@@ -1,35 +1,35 @@
 <?php require "partials/head.php"; ?>
 
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #F5F5DC;
-        }
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #F5F5DC;
+    }
 
-        table {
-            margin: 20px auto;
-            border-collapse: collapse;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            background-color: #fff;
-            color: #333;
-        }
+    table {
+        margin: 20px auto;
+        border-collapse: collapse;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        background-color: #fff;
+        color: #333;
+    }
 
-        th,
-        td {
-            border: 1px solid #ddd;
-            padding: 15px;
-            text-align: left;
-        }
+    th,
+    td {
+        border: 1px solid #ddd;
+        padding: 15px;
+        text-align: left;
+    }
 
-        th {
-            background-color: #2473c0;
-            color: #fff;
-        }
+    th {
+        background-color: #2473c0;
+        color: #fff;
+    }
 
-        tr:nth-child(even) {
-            background-color: #f2f2f2;
-        }
-    </style>
+    tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+</style>
 </head>
 
 <body>
@@ -75,10 +75,10 @@
                             <?php
 
                             // Database connection
-                            $servername = "sql201.infinityfree.com";
-                            $user = "if0_36400948";
-                            $pass = "5f48url9Y5HSfK";
-                            $dbname = "if0_36400948_coffeeshop_db";
+                            $servername = "localhost";
+                            $user = "root";
+                            $pass = "";
+                            $dbname = "coffeeshop_db";
 
 
                             // Create a database connection

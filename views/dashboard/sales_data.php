@@ -1,12 +1,10 @@
 <?php
 
-
 // Database connection
-$servername = "sql201.infinityfree.com";
-$user = "if0_36400948";
-$pass = "5f48url9Y5HSfK";
-$dbname = "if0_36400948_coffeeshop_db";
-
+$servername = "127.0.0.1";
+$user = "root";
+$pass = "";
+$dbname = "coffeeshop_db";
 
 try {
     $pdo = new PDO("mysql:host=$servername;dbname=$dbname", $user, $pass);
@@ -18,23 +16,22 @@ try {
 // Sales report 
 if (isset($_GET['get_sales_data'])) {
     try {
-        $filter = isset($_GET['filter']) ? $_GET['filter'] : '';
         $startDate = isset($_GET['startDate']) ? $_GET['startDate'] : null;
         $endDate = isset($_GET['endDate']) ? $_GET['endDate'] : null;
 
         $query = "SELECT * FROM tblpayment WHERE 1";
 
-        switch ($filter) {
-            case 'cash':
-                $query .= " AND paymenttype = 'Cash'";
-                break;
-            case 'card':
-                $query .= " AND paymenttype = 'Card'";
-                break;
+        // switch ($filter) {
+        //     case 'cash':
+        //         $query .= " AND paymenttype = 'Cash'";
+        //         break;
+        //     case 'card':
+        //         $query .= " AND paymenttype = 'Card'";
+        //         break;
 
-            default:
-                break;
-        }
+        //     default:
+        //         break;
+        // }
 
         if ($startDate !== null && $endDate !== null) {
             $query .= " AND DATE(order_datetime) BETWEEN :start_date AND :end_date";
@@ -55,4 +52,3 @@ if (isset($_GET['get_sales_data'])) {
         echo "Error: " . $e->getMessage();
     }
 }
-?>

@@ -13,7 +13,7 @@ if (!isset($_SESSION['position']) && !isset($_SESSION['username']) && !isset($_S
 $servername = "127.0.0.1";
 $user = "root";
 $pass = "";
-$dbname = "dbcoffee_shop";
+$dbname = "coffeeshop_db";
 
 try {
     $pdo = new PDO("mysql:host=$servername;dbname=$dbname", $user, $pass);
@@ -109,7 +109,7 @@ $customerData = $statement->fetchAll(PDO::FETCH_ASSOC);
                         </tr>
                     </thead>
                     <tbody>
-                        <?php foreach ($customerData as $customer): ?>
+                        <?php foreach ($customerData as $customer) : ?>
                             <tr>
                                 <td>
                                     <?= $customer['customername'] ?>

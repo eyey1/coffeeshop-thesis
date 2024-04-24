@@ -3,7 +3,7 @@
 $dbHost = '127.0.0.1';
 $dbUser = 'root';
 $dbPass = '';
-$dbName = 'dbcoffee_shop';
+$dbName = 'coffeeshop_db';
 
 // Create a database connection
 try {
@@ -42,4 +42,3 @@ unset($_SESSION['position']);
 unset($_SESSION['username']);
 unset($_SESSION['employeeID']);
 header("Location: Login.php");
-?>
