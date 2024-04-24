@@ -3,7 +3,7 @@
 $servername = "127.0.0.1";
 $user = "root";
 $pass = "";
-$dbname = "dbcoffee_shop";
+$dbname = "coffeeshop_db";
 
 try {
     $pdo = new PDO("mysql:host=$servername;dbname=$dbname", $user, $pass);
@@ -14,7 +14,7 @@ try {
 
 if (isset($_GET['get_inventory_data'])) {
     try {
-        $filter = isset($_GET['filter']) ? $_GET['filter'] : '';
+        $filter = isset($_GET['filterValue']) ? $_GET['filterValue'] : '';
 
         $query = "SELECT * FROM tblinventory WHERE 1";
 
@@ -39,5 +39,3 @@ if (isset($_GET['get_inventory_data'])) {
         echo "Error: " . $e->getMessage();
     }
 }
-
-?>

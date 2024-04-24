@@ -96,11 +96,11 @@ function filterTable(reportType) {//for inventory report
     filterId = 'quantityFilterInventory';
     tableBodyId = 'inventoryTableBody';
   } else if (reportType === 'feedback'){
-    var feedbackStartDate = $("#startDateFeedback").val();
-    var feedbackEndDate = $("#endDateFeedback").val();
+    var startDate = $("#startDateFeedback").val();
+    var endDate = $("#endDateFeedback").val();
   } else if (reportType === 'userlogs'){
-    var userlogsStartDate = $("#startDateUserlog").val();
-    var userlogsEndDate = $("#endDateUserlog").val();
+    var startDate = $("#startDateUserlog").val();
+    var endDate = $("#endDateUserlog").val();
   }
 
   var filterValue = $("#" + filterId).val();
@@ -108,9 +108,9 @@ function filterTable(reportType) {//for inventory report
   if (reportType === 'inventory') {
     fetchDataAndDisplay(reportType, filterValue, "", "");
   } else if (reportType === 'feedback'){
-    fetchDataAndDisplay(reportType, "", feedbackStartDate , feedbackEndDate);
+    fetchDataAndDisplay(reportType, "", startDate, endDate);
   } else if (reportType === 'userlogs'){
-    fetchDataAndDisplay(reportType, "", userlogsStartDate, userlogsEndDate);
+    fetchDataAndDisplay(reportType, "", startDate, endDate);
   }
   
 }
@@ -225,29 +225,29 @@ function escapeHtml(text) {
 }
 
 
-function fetchDataAndDisplay(reportType, filterValue, fetchedStartDate, fetchedEndDate) {
+function fetchDataAndDisplay(reportType, filterValue, startDate, endDate) {
   var url;
 
   if (reportType === 'sales') {
-    url = 'reports?get_sales_data';
+    url = 'sales_data.php?get_sales_data';
 
-    if (fetchedStartDate && fetchedEndDate) {
-      url += '&startDate=' + fetchedStartDate + '&endDate=' + fetchedEndDate;
+    if (startDate && endDate) {
+      url += '&startDate=' + startDate + '&endDate=' + endDate;
     }
   } else  if (reportType === 'inventory') {
-      url = 'reports?get_inventory_data';
+      url = 'inventory_data.php?get_inventory_data';
     if(filterValue){
       url += '&filterValue=' + filterValue;
     }
   } else if (reportType === 'feedback') {
-    url = 'reports?get_feedback_data';
-    if (fetchedStartDate && fetchedEndDate) {
-      url += '&feedbackStartDate=' + fetchedStartDate + '&feedbackEndDate=' + fetchedEndDate;
+    url = 'feedback_data.php?get_feedback_data';
+    if (startDate && endDate) {
+      url += '&startDate=' + startDate + '&endDate=' + endDate;
     }
   } else if (reportType === 'userlogs') {
-    url = 'reports?get_userlogs_data';
-    if (fetchedStartDate && fetchedEndDate) {
-      url += '&userlogStartDate=' + fetchedStartDate + '&userlogEndDate=' + fetchedEndDate;
+    url = 'userlogs_data.php?get_userlogs_data';
+    if (startDate && endDate) {
+      url += '&startDate=' + startDate + '&endDate=' + endDate;
     }
   } else {
     console.error('Invalid report type: ' + reportType);

@@ -1,11 +1,10 @@
 <?php
 // Database connection
-$servername = "sql201.infinityfree.com";
-$user = "if0_36400948";
-$pass = "5f48url9Y5HSfK";
-$dbname = "if0_36400948_coffeeshop_db";
 
-
+$servername = "localhost";
+$user = "root";
+$pass = "";
+$dbname = "coffeeshop_db";
 try {
     $pdo = new PDO("mysql:host=$servername;dbname=$dbname", $user, $pass);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -23,37 +22,37 @@ $customerData = $statement->fetchAll(PDO::FETCH_ASSOC);
 <?php require "partials/head.php"; ?>
 <?php require "partials/nav.php"; ?>
 
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #F5F5DC;
-        }
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #F5F5DC;
+    }
 
-        table {
-            width: 100%;
-            margin: 20px auto;
-            border-collapse: collapse;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            background-color: #fff;
-            color: #333;
-        }
+    table {
+        width: 100%;
+        margin: 20px auto;
+        border-collapse: collapse;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        background-color: #fff;
+        color: #333;
+    }
 
-        th,
-        td {
-            border: 1px solid #ddd;
-            padding: 15px;
-            text-align: left;
-        }
+    th,
+    td {
+        border: 1px solid #ddd;
+        padding: 15px;
+        text-align: left;
+    }
 
-        th {
-            background-color: #2473c0;
-            color: #fff;
-        }
+    th {
+        background-color: #2473c0;
+        color: #fff;
+    }
 
-        tr:nth-child(even) {
-            background-color: #f2f2f2;
-        }
-    </style>
+    tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+</style>
 </head>
 
 <body>
@@ -77,7 +76,7 @@ $customerData = $statement->fetchAll(PDO::FETCH_ASSOC);
                         </tr>
                     </thead>
                     <tbody>
-                        <?php foreach ($customerData as $customer): ?>
+                        <?php foreach ($customerData as $customer) : ?>
                             <tr>
                                 <td>
                                     <?= $customer['firstname'] ?>

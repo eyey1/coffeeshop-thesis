@@ -1,4 +1,4 @@
-<?php 
+<?php
 $servername = "localhost";
 $username = "root";
 $password = "";
@@ -23,7 +23,7 @@ try {
 if (isset($_POST['create'])) {
     $firstname = $_POST['create_firstname'];
     $lastname = $_POST['create_lastname'];
-    $email = $_POST['email'];
+    $email = $_POST['create_email'];
     $position = $_POST['create_position'];
     $username = $_POST['create_username'];
     $password = $_POST['create_password'];
@@ -39,6 +39,7 @@ if (isset($_POST['create'])) {
     if ($conn->query($insert_sql) === TRUE) {
         // Handle a successful insertion (you can redirect or show a success message)
         echo "Record created successfully!";
+
         //add user log [add new employee]
         $DateTime = new DateTime();
         $philippinesTimeZone = new DateTimeZone('Asia/Manila'); // Set to the Philippines time zone
@@ -92,19 +93,22 @@ if (isset($_POST['save'])) {
     $employeeID = $_POST['save'];
     $firstname = $_POST['firstname_' . $employeeID];
     $lastname = $_POST['lastname_' . $employeeID];
+    $email = $_POST['email_' . $employeeID];
     $position = $_POST['position_' . $employeeID];
     $hiredate = $_POST['hiredate_' . $employeeID];
     $username = $_POST['username_' . $employeeID];
-    $password = $_POST['password_' . $employeeID];
+    // $password = $_POST['password_' . $employeeID];
+    // $hpassword = password_hash($password, PASSWORD_BCRYPT);
 
     // Construct the SQL query for updating the record
     $update_sql = "UPDATE tblemployees 
                  SET firstname = '$firstname',
                      lastname = '$lastname',
+                     email = '$email',
                      position = '$position',
                      hiredate = '$hiredate',
-                     username = '$username',
-                     password = '$password'
+                     username = '$username'
+                    --  password = '$password'
                  WHERE employeeID = $employeeID";
 
     if ($conn->query($update_sql) === TRUE) {
@@ -145,9 +149,11 @@ if (isset($_POST['save'])) {
 if (isset($_POST['delete'])) {
     $employeeID = $_POST['delete'];
 
+    $deletefeedback_sql = "DELETE FROM tblfeedback WHERE customerid = $employeeID";
+    $deletelogs_sql = "DELETE FROM tbluserlogs WHERE employeeid = $employeeID";
     $delete_sql = "DELETE FROM tblemployees WHERE employeeID = $employeeID";
 
-    if ($conn->query($delete_sql) === TRUE) {
+    if ($conn->query($deletelogs_sql) && $conn->query($deletefeedback_sql) && $conn->query($delete_sql)) {
 
         //add user log [delete a employee]
         $DateTime = new DateTime();

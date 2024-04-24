@@ -1,5 +1,4 @@
 <?php
-
 // Database connection
 $servername = "127.0.0.1";
 $user = "root";
@@ -13,28 +12,17 @@ try {
     die("Database connection failed: " . $e->getMessage());
 }
 
-// Sales report 
-if (isset($_GET['get_sales_data'])) {
+// Fetch feedback data
+if (isset($_GET['get_userlogs_data'])) {
     try {
+
         $startDate = isset($_GET['startDate']) ? $_GET['startDate'] : null;
         $endDate = isset($_GET['endDate']) ? $_GET['endDate'] : null;
 
-        $query = "SELECT * FROM tblpayment WHERE 1";
-
-        // switch ($filter) {
-        //     case 'cash':
-        //         $query .= " AND paymenttype = 'Cash'";
-        //         break;
-        //     case 'card':
-        //         $query .= " AND paymenttype = 'Card'";
-        //         break;
-
-        //     default:
-        //         break;
-        // }
+        $query = "SELECT * FROM tbluserlogs WHERE 1";
 
         if ($startDate !== null && $endDate !== null) {
-            $query .= " AND DATE(order_datetime) BETWEEN :start_date AND :end_date";
+            $query .= " AND DATE(log_datetime) BETWEEN :start_date AND :end_date";
         }
 
         $stmt = $pdo->prepare($query);
@@ -45,9 +33,8 @@ if (isset($_GET['get_sales_data'])) {
         }
 
         $stmt->execute();
-        $salesData = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        echo json_encode($salesData);
-        exit();
+        $userlogsData = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        echo json_encode($userlogsData);
     } catch (PDOException $e) {
         echo "Error: " . $e->getMessage();
     }

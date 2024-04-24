@@ -3,7 +3,7 @@
 $host = '127.0.0.1';
 $username = 'root';
 $password = '';
-$database = 'dbcoffee_shop';
+$database = 'coffeeshop_db';
 
 // Create a database connection
 $mysqli = new mysqli($host, $username, $password, $database);
@@ -26,6 +26,3 @@ $mysqli->close();
 // Return the product data as JSON
 header('Content-Type: application/json');
 echo json_encode($products);
-?>
-
-

@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 $router->get('/', 'index.php');
 $router->get('/about', 'about.php');
@@ -33,6 +33,8 @@ $router->get('/admin_dashboard/reports', 'dashboard/reports.php')->only('admin')
 
 $router->get('/admin_dashboard/reports?get_sales_data', 'dashboard/sales_data.php')->only('admin');
 $router->get('/admin_dashboard/reports?get_inventory_data', 'dashboard/inventory_data.php')->only('admin');
+$router->get('/admin_dashboard/reports?get_feedback_data', 'dashboard/feedback_data.php')->only('admin');
+$router->get('/admin_dashboard/reports?get_userlogs_data', 'dashboard/userlogs_data.php')->only('admin');
 
 $router->get('/pos_frontend', 'pos/index.php')->only('admin');
 $router->get('/pos_frontend/frappe', 'pos/frappe.php')->only('admin');
@@ -59,5 +61,3 @@ $router->post('/sessions', 'sessions/store.php')->only('guest');
 $router->delete('/sessions', 'sessions/destroy.php')->only('auth');
 
 $router->get('/test', 'test.php');
-
-?>  

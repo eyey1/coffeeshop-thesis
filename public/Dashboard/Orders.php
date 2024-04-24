@@ -11,7 +11,7 @@ if (!isset($_SESSION['position']) && !isset($_SESSION['username']) && !isset($_S
 $servername = "127.0.0.1";
 $user = "root";
 $pass = "";
-$dbname = "dbcoffee_shop";
+$dbname = "coffeeshop_db";
 
 // Create a database connection
 $conn = new mysqli($servername, $user, $pass, $dbname);

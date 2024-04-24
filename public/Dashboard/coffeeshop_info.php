@@ -13,7 +13,7 @@ if (!isset($_SESSION['position']) && !isset($_SESSION['username']) && !isset($_S
 $servername = "127.0.0.1";
 $user = "root";
 $pass = "";
-$dbname = "dbcoffee_shop";
+$dbname = "coffeeshop_db";
 
 try {
     $pdo = new PDO("mysql:host=$servername;dbname=$dbname", $user, $pass);
@@ -81,7 +81,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // You can log the error or perform additional actions based on your requirements
         }
     }
-
 }
 
 ?>
@@ -181,7 +180,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </style>
     <script>
         // toggle edit coffeeshop form
-        document.addEventListener('DOMContentLoaded', function () {
+        document.addEventListener('DOMContentLoaded', function() {
             const editForm = document.getElementById('editInfo');
             const overlay = document.getElementById('editOverlay');
             const closeFormBtn = document.getElementById('closeFormBtn');
@@ -190,13 +189,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             overlay.style.display = 'none';
 
             // Show the overlay form when the button is clicked
-            editForm.addEventListener('click', function () {
+            editForm.addEventListener('click', function() {
                 overlay.style.display = 'flex';
                 body.style.overflow = 'hidden';
             });
 
             // Close the overlay form when the close button is clicked
-            closeFormBtn.addEventListener('click', function () {
+            closeFormBtn.addEventListener('click', function() {
                 overlay.style.display = 'none';
                 body.style.overflow = 'visible';
             });
@@ -211,36 +210,30 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <div class="info-box">
                 <button id="closeFormBtn" class="button delete-button">X</button>
                 <h2>Add New Product</h2>
-                <?php foreach ($coffeeshopData as $coffeeshop): ?>
+                <?php foreach ($coffeeshopData as $coffeeshop) : ?>
                     <form method="post" action="">
                         <input type="hidden" class="form-control" name="editId" value="<?= $coffeeshop['coffeeshopid'] ?>">
                         <div class="form-group">
                             <label for="new_product">CoffeeShop Name:</label>
-                            <input type="text" class="form-control" name="editShopName"
-                                value="<?= $coffeeshop['shopname'] ?>" required>
+                            <input type="text" class="form-control" name="editShopName" value="<?= $coffeeshop['shopname'] ?>" required>
                         </div>
                         <div class="form-group">
                             <label for="new_productDescription">Branch:</label>
-                            <input type="text" class="form-control" name="editBranch" value="<?= $coffeeshop['branch'] ?>"
-                                required>
+                            <input type="text" class="form-control" name="editBranch" value="<?= $coffeeshop['branch'] ?>" required>
                         </div>
                         <div class="form-group">
                             <label for="new_price">Address: </label>
-                            <input type="text" class="form-control" name="editAddress" value="<?= $coffeeshop['address'] ?>"
-                                required>
+                            <input type="text" class="form-control" name="editAddress" value="<?= $coffeeshop['address'] ?>" required>
                         </div>
                         <div class="form-group">
                             <label for="new_category">Contact Number: </label>
-                            <input type="number" class="form-control" name="editContact"
-                                value="<?= $coffeeshop['contact_no'] ?>" required>
+                            <input type="number" class="form-control" name="editContact" value="<?= $coffeeshop['contact_no'] ?>" required>
                         </div>
                         <div class="form-group">
                             <label for="new_category">Email: </label>
-                            <input type="email" class="form-control" name="editEmail" value="<?= $coffeeshop['email'] ?>"
-                                required>
+                            <input type="email" class="form-control" name="editEmail" value="<?= $coffeeshop['email'] ?>" required>
                         </div>
-                        <button type="submit" name="submit_edit" class="button edit-button"
-                            style="width:100%;">💾Save</button>
+                        <button type="submit" name="submit_edit" class="button edit-button" style="width:100%;">💾Save</button>
                     </form>
                 <?php endforeach; ?>
             </div>
@@ -268,7 +261,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <h2>CoffeeShop Information
                 <?php echo " (" . $_SESSION['username'] . " the " . $_SESSION['position'] . ") " ?>
             </h2>
-            <?php foreach ($coffeeshopData as $coffeeshop): ?>
+            <?php foreach ($coffeeshopData as $coffeeshop) : ?>
                 <div class="info-box" style="width:inherit; height:inherit; margin-top:5em;">
                     <div style="display: flex; justify-content: space-between;">
                         <button type="button" class="button edit-button" id="editInfo">✎Edit</button>
