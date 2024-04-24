@@ -126,7 +126,7 @@
     <div class="overlay-content">
         <div class="info-box">
             <button id="closeFormBtn" class="button delete-button">X</button>
-            <h2>Add New Product</h2>
+            <h2>Edit Coffeeshop Info</h2>
             <?php foreach ($coffeeshopData as $coffeeshop) : ?>
                 <form method="post" action="" onsubmit="return confirm('Are you sure you want to save?');">
                     <input type="hidden" class="form-control" name="editId" value="<?= $coffeeshop['coffeeshopid'] ?>">
