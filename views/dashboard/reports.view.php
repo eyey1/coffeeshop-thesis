@@ -30,7 +30,7 @@
     <div class="container">
       <div class="row justify-content-center mt-3">
         <div class="col text-center">
-          <button class="btn btn-primary" onclick="showReport('sales')">Show Daily Sales Report</button>
+          <button class="btn btn-primary" onclick="showReport('sales')">Show Sales Report</button>
           <button class="btn btn-primary" onclick="showReport('inventory')">Show Inventory Report</button>
           <button class="btn btn-primary" onclick="showReport('feedback')">Show Feedback Report</button>
           <button class="btn btn-primary" onclick="showReport('userlogs')">Show Userlogs Report</button>

@@ -44,9 +44,6 @@
                 <?php require "partials/nav.php"; ?>
             <?php endif; ?>
         </div>
-        <div class="top-right">
-            <a href="logout.php" class="login-button">Logout</a>
-        </div>
 
         <!--ORDERS TAB-->
         <div class="content">
