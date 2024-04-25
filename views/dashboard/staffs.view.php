@@ -1,5 +1,6 @@
 <?php require "partials/head.php"; ?>
-<?php require "partials/nav.php"; ?>
+<?php require "partials/nav.php";
+include "connect.php"; ?>
 
 <style>
     body {
@@ -179,17 +180,17 @@
                         <tbody>
                             <?php
 
-                            $servername = "localhost";
-                            $username = "root";
-                            $password = "";
-                            $dbname = "coffeeshop_db";
+                            // $servername = "localhost";
+                            // $username = "root";
+                            // $password = "";
+                            // $dbname = "coffeeshop_db";
 
-                            // Create a database connection
-                            $conn = new mysqli($servername, $username, $password, $dbname);
+                            // // Create a database connection
+                            // $conn = new mysqli($servername, $username, $password, $dbname);
 
-                            if ($conn->connect_error) {
-                                die("Connection failed: " . $conn->connect_error);
-                            }
+                            // if ($conn->connect_error) {
+                            //     die("Connection failed: " . $conn->connect_error);
+                            // }
 
                             $sql = "SELECT * FROM tblemployees ORDER BY position";
                             $result = $conn->query($sql);
@@ -264,10 +265,15 @@
                                 <form action="/admin_dashboard/staffs" method="POST">
                                     <button type="submit" name="cancel" class="button delete-button" value="<?php echo $row['employeeID']; ?>">✖</button>
                                 </form>
+                            <?php elseif ($row['position'] === "admin" && $row['employeeID'] === "1") : ?>
+                                <form action="/admin_dashboard/staffs" method="POST">
+                                    <button type="submit" name="edit" class="button edit-button" value="<?php echo $row['employeeID']; ?>" style="background-color:grey;" disabled>Super Admin</button>
+                                </form>
                             <?php elseif ($row['position'] === "admin") : ?>
                                 <form action="/admin_dashboard/staffs" method="POST">
                                     <button type="submit" name="edit" class="button edit-button" value="<?php echo $row['employeeID']; ?>">✎</button>
                                 </form>
+
                             <?php else : ?>
                                 <form action="/admin_dashboard/staffs" method="POST">
                                     <button type="submit" name="edit" class="button edit-button" value="<?php echo $row['employeeID']; ?>">✎</button>

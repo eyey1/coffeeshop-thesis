@@ -1,16 +1,17 @@
 <?php
+include "connect.php";
 // Database connection
 
-$servername = "localhost";
-$user = "root";
-$pass = "";
-$dbname = "coffeeshop_db";
-try {
-    $pdo = new PDO("mysql:host=$servername;dbname=$dbname", $user, $pass);
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-} catch (PDOException $e) {
-    die("Database connection failed: " . $e->getMessage());
-}
+// $servername = "localhost";
+// $user = "root";
+// $pass = "";
+// $dbname = "coffeeshop_db";
+// try {
+//     $pdo = new PDO("mysql:host=$servername;dbname=$dbname", $user, $pass);
+//     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+// } catch (PDOException $e) {
+//     die("Database connection failed: " . $e->getMessage());
+// }
 
 // Fetch customer data
 $sql = "SELECT * FROM tblemployees WHERE position = 'guest'";

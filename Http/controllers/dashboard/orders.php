@@ -1,17 +1,18 @@
-<?php 
+<?php
+include "connect.php";
 // Database connection
-$servername = "localhost";
-$user = "root";
-$pass = "";
-$dbname = "coffeeshop_db";
+// $servername = "localhost";
+// $user = "root";
+// $pass = "";
+// $dbname = "coffeeshop_db";
 
 
-// Create a database connection
-$conn = new mysqli($servername, $user, $pass, $dbname);
+// // Create a database connection
+// $conn = new mysqli($servername, $user, $pass, $dbname);
 
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
+// if ($conn->connect_error) {
+//     die("Connection failed: " . $conn->connect_error);
+// }
 
 //for pdo
 try {

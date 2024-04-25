@@ -1,22 +1,23 @@
 <?php
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "coffeeshop_db";
+include "connect.php";
+// $servername = "localhost";
+// $username = "root";
+// $password = "";
+// $dbname = "coffeeshop_db";
 
-// Create a database connection
-$conn = new mysqli($servername, $username, $password, $dbname);
+// // Create a database connection
+// $conn = new mysqli($servername, $username, $password, $dbname);
 
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
+// if ($conn->connect_error) {
+//     die("Connection failed: " . $conn->connect_error);
+// }
 
-try {
-    $pdo = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-} catch (PDOException $e) {
-    die("Database connection failed: " . $e->getMessage());
-}
+// try {
+//     $pdo = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+//     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+// } catch (PDOException $e) {
+//     die("Database connection failed: " . $e->getMessage());
+// }
 
 
 // CREATE operation
@@ -83,7 +84,7 @@ if (isset($_POST['edit'])) {
     $password = isset($_POST['password_' . $employeeID]) ? $_POST['password_' . $employeeID] : '';
 
     // Retrieve the existing hiredate
-    $result = $conn->query("SELECT hiredate FROM tblemployees WHERE employeeID = $employeeID");
+    $result = $conn->query("SELECT * FROM tblemployees WHERE employeeID = $employeeID ORDER BY hiredate ASC");
     $row = $result->fetch_assoc();
     $existingHireDate = $row['hiredate'];
 }

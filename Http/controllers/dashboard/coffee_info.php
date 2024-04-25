@@ -1,17 +1,17 @@
-<?php 
+<?php
+include "connect.php";
+//Database connection
+// $servername = "localhost";
+// $user = "root";
+// $pass = "";
+// $dbname = "coffeeshop_db";
 
-// Database connection
-$servername = "localhost";
-$user = "root";
-$pass = "";
-$dbname = "coffeeshop_db";
-
-try {
-    $pdo = new PDO("mysql:host=$servername;dbname=$dbname", $user, $pass);
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-} catch (PDOException $e) {
-    die("Database connection failed: " . $e->getMessage());
-}
+// try {
+//     $pdo = new PDO("mysql:host=$servername;dbname=$dbname", $user, $pass);
+//     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+// } catch (PDOException $e) {
+//     die("Database connection failed: " . $e->getMessage());
+// }
 
 // Fetch customer data
 $sql = "SELECT * FROM tblcoffeeshop";
@@ -72,7 +72,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // You can log the error or perform additional actions based on your requirements
         }
     }
-
 }
 
 
