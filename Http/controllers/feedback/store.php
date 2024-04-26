@@ -1,6 +1,7 @@
 <?php
 
 use Core\App;
+use Core\Authenticator;
 use Core\Database;
 use Core\Validator;
 
@@ -14,8 +15,8 @@ if (!Validator::string($_POST['title'], 1, 30)) {
   $errors['body'] = "A body of no more than 30 characters is required.";
 }
 
-if (!Validator::string($_POST['feedback_desc'], 1, 50)) {
-  $errors['body'] = "A body of no more than 50 characters is required.";
+if (!Validator::string($_POST['feedback_desc'], 1, 100)) {
+  $errors['body'] = "A body of no more than 100 characters is required.";
 }
 
 if (!empty($errors)) {

@@ -1,19 +1,37 @@
     <!-- Navbar Start -->
-    <nav>
+    <style>
+        nav>a {
+            padding: 0;
+            margin: 0;
+            color: white;
+            font-weight: bold;
+            font-size: 1.5em;
+            display: flex;
+            align-items: center;
+        }
+
+        ul {
+            padding: 0;
+            margin: 0;
+        }
+    </style>
+    <nav style="padding:10px;">
+        <a>Point of Sales</a>
         <ul>
-            <li><a href="#">Sales</a></li>
-            <li><a href="#">+</a></li>
-            <li><a href="#">Tunnel</a></li>
-            <li><a href="#">Surf</a></li>
-            <li><a href="#">Parties</a></li>
-            <li><a href="/pos_frontend/online_orders">Online Orders</a></li>
+            <a class="login-button" style="background-color:black;" href="/pos_frontend/online_orders">Online Orders</a>
+            <a class="login-button" style="background-color:black;" href="/pos_frontend">Products</a>
+        </ul>
+        <ul style="text-align:right;">
+            <li>
+                <a class="login-button" style="background-color:black;" href="/admin_dashboard">Dashboard</a>
+            </li>
+            <li>
+                <a class="login-button" href="/sessions" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Log Out</a>
+                <form id="logout-form" action="/sessions" method="POST" style="display: none;">
+                    <input type="hidden" name="_method" value="DELETE">
+                </form>
+            </li>
         </ul>
 
-        <div class="search">
-        <input type="Search" placeholder="Search..." />
-        </div>
-        <a href="../Dashboard/logout.php" class="login-button">Logout</a>
     </nav>
     <!-- Navbar End -->
-
-    

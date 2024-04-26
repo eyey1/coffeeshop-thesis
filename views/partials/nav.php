@@ -12,7 +12,7 @@ $coffee_data = $db->query("SELECT * FROM tblcoffeeshop")->get();
 <!-- Navbar Start -->
 <div class="container-fluid p-0 nav-bar">
     <nav class="navbar navbar-expand-lg bg-none navbar-dark pb-0">
-        <a href="index.html" class="navbar-brand px-lg-4 m-0">
+        <a href="/" class="navbar-brand px-lg-4 m-0">
             <?php foreach ($coffee_data as $data) : ?>
                 <h1 class="m-0 display-4 text-uppercase text-white"><?= $data['shopname'] ?></h1>
             <?php endforeach; ?>

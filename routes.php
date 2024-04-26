@@ -10,7 +10,7 @@ $router->get('/get_products', 'get_products.php');
 $router->get('/show_product', 'product_page.php');
 
 $router->get('/reservation', 'reservation.php')->only('auth');
-$router->get('/testimonial', 'feedback/testimonial.php')->only('auth');
+$router->get('/testimonial', 'feedback/testimonial.php');
 $router->post('/feedback', 'feedback/store.php')->only('auth');
 $router->get('/contact', 'contact.php');
 // $router->get('/notes', 'notes/index.php')->only('auth');

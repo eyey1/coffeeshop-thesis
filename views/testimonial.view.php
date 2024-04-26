@@ -78,7 +78,7 @@
                             <i><?= $fback['username'] ?></i>
                         </div>
                     </div>
-                    <p class="m-0"><?= $fback['feedback_desc'] ?></p>
+                    <p class="m-0" style="padding-right:20px"><?= $fback['feedback_desc'] ?></p>
                 </div>
 
             <?php endforeach; ?>
