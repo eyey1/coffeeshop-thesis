@@ -191,46 +191,148 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $editedDescription = $_POST['edited_description'];
         $editedPrice = $_POST['edited_price'];
         $editedCategory = $_POST['edited_category'];
+        // $editedImage = $_POST['edited_image'];
 
         try {
-            $sqlEdit = "UPDATE tblproducts SET product_name = :editedProduct, product_description = :editedDescription, price = :editedPrice, category = :editedCategory WHERE product_id = :editProductId";
-            $statementEdit = $pdo->prepare($sqlEdit);
-            $statementEdit->bindParam(':editProductId', $editProductId);
-            $statementEdit->bindParam(':editedProduct', $editedProduct);
-            $statementEdit->bindParam(':editedDescription', $editedDescription);
-            $statementEdit->bindParam(':editedPrice', $editedPrice);
-            $statementEdit->bindParam(':editedCategory', $editedCategory);
+            $errors = [];
 
-            $statementEdit->execute();
+            $target_dir = "uploads/";
+            $target_file = $target_dir . basename($_FILES["edited_image"]["name"]);
+            $uploadOk = 1;
+            $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
 
-            //add user log [edited a product]
-            $DateTime = new DateTime();
-            $philippinesTimeZone = new DateTimeZone('Asia/Manila'); // Set to the Philippines time zone
-            $DateTime->setTimeZone($philippinesTimeZone);
+            // Check if image file is a actual image or fake image
+            $check = @getimagesize($_FILES["edited_image"]["tmp_name"]);
 
-            $currentDateTime = $DateTime->format('Y-m-d H:i:s');
-            $employeeid = $_SESSION['employeeID'];
-            $loginfo = $_SESSION['username'] . ' has edited a product.';
-
-            try {
-                $sqlLogAdd = "INSERT INTO tbluserlogs (log_datetime, loginfo, employeeid) VALUES (:currentDateTime, :loginfo, :employeeid)";
-                $statementLogAdd = $pdo->prepare($sqlLogAdd);
-                $statementLogAdd->bindParam(':loginfo', $loginfo);
-                $statementLogAdd->bindParam(':employeeid', $employeeid);
-                $statementLogAdd->bindParam(':currentDateTime', $currentDateTime);
-                $statementLogAdd->execute();
-            } catch (PDOException $e) {
-                // Handle the exception/error
-                echo "Error: " . $e->getMessage();
+            if ($check !== false) {
+                $uploadOk = 1;
+            } else {
+                $errors['body'] = "File is not an image.";
+                $uploadOk = 0;
             }
 
-            header("Location: /admin_dashboard/products");
-            exit(); // Ensure to stop script execution after redirection
+            // Check if file already exists
+            // if (file_exists($target_file)) {
+            //     $errors['body'] = "Sorry, file already exists.";
+            //     $uploadOk = 0;
+            // }
+
+            // Check file size
+            if ($_FILES["edited_image"]["size"] > 50000000) {
+                $errors['body'] = "Sorry, your file is too large.";
+                $uploadOk = 0;
+            }
+
+            // Allow certain file formats
+            if (
+                $imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
+                && $imageFileType != "gif"
+            ) {
+                $errors['body'] = "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
+                $uploadOk = 0;
+            }
+
+            // Check if $uploadOk is set to 0 by an error
+            if ($uploadOk == 0) {
+                if (!empty($errors)) {
+                    view('dashboard/products.view.php', [
+                        'inventoryData' => $inventoryData,
+                        'categoryProductData' => $categoryProductData,
+                        'productsData' => $productsData,
+                        'promosData' => $promosData,
+                        'errors' => $errors
+                    ]);
+                }
+                exit();
+            } else {
+                if (move_uploaded_file($_FILES["edited_image"]["tmp_name"], $target_file)) {
+                    $editedImage = basename($_FILES["edited_image"]["name"]);
+                    $sqlUpdate = "UPDATE tblproducts SET product_name = :editedProduct, product_description = :editedDescription, price = :editedPrice, category = :editedCategory, image = :editedImage WHERE product_id = :editProductId";
+
+                    $statementEdit = $pdo->prepare($sqlUpdate);
+                    $statementEdit->bindParam(':editProductId', $editProductId);
+                    $statementEdit->bindParam(':editedProduct', $editedProduct);
+                    $statementEdit->bindParam(':editedDescription', $editedDescription);
+                    $statementEdit->bindParam(':editedPrice', $editedPrice);
+                    $statementEdit->bindParam(':editedCategory', $editedCategory);
+                    $statementEdit->bindParam(':editedImage', $editedImage);
+
+                    $statementEdit->execute();
+
+                    //add user log [added a new product]
+                    $DateTime = new DateTime();
+                    $philippinesTimeZone = new DateTimeZone('Asia/Manila'); // Set to the Philippines time zone
+                    $DateTime->setTimeZone($philippinesTimeZone);
+
+                    $currentDateTime = $DateTime->format('Y-m-d H:i:s');
+                    $employeeid = $_SESSION['employeeID'];
+                    $loginfo = $_SESSION['username'] . ' has added a new product.';
+
+                    try {
+                        $sqlLogAdd = "INSERT INTO tbluserlogs (log_datetime, loginfo, employeeid) VALUES (:currentDateTime, :loginfo, :employeeid)";
+                        $statementLogAdd = $pdo->prepare($sqlLogAdd);
+                        $statementLogAdd->bindParam(':loginfo', $loginfo);
+                        $statementLogAdd->bindParam(':employeeid', $employeeid);
+                        $statementLogAdd->bindParam(':currentDateTime', $currentDateTime);
+                        $statementLogAdd->execute();
+                    } catch (PDOException $e) {
+                        // Handle the exception/error
+                        echo "Error: " . $e->getMessage();
+                    }
+
+                    header("Location: /admin_dashboard/products");
+                    exit(); // Ensure to stop script execution after redirection
+
+                } else {
+                    $errors['body'] = "Sorry, there was an error uploading your file.";
+                }
+            }
         } catch (PDOException $e) {
             // Handle the exception/error
             echo "Error: " . $e->getMessage();
             // You can log the error or perform additional actions based on your requirements
         }
+
+        // try {
+        //     $sqlEdit = "UPDATE tblproducts SET product_name = :editedProduct, product_description = :editedDescription, price = :editedPrice, category = :editedCategory, image = :editedImage WHERE product_id = :editProductId";
+        //     $statementEdit = $pdo->prepare($sqlEdit);
+        //     $statementEdit->bindParam(':editProductId', $editProductId);
+        //     $statementEdit->bindParam(':editedProduct', $editedProduct);
+        //     $statementEdit->bindParam(':editedDescription', $editedDescription);
+        //     $statementEdit->bindParam(':editedPrice', $editedPrice);
+        //     $statementEdit->bindParam(':editedCategory', $editedCategory);
+        //     $statementEdit->bindParam(':editedImage', $editedImage);
+
+        //     $statementEdit->execute();
+
+        //     //add user log [edited a product]
+        //     $DateTime = new DateTime();
+        //     $philippinesTimeZone = new DateTimeZone('Asia/Manila'); // Set to the Philippines time zone
+        //     $DateTime->setTimeZone($philippinesTimeZone);
+
+        //     $currentDateTime = $DateTime->format('Y-m-d H:i:s');
+        //     $employeeid = $_SESSION['employeeID'];
+        //     $loginfo = $_SESSION['username'] . ' has edited a product.';
+
+        //     try {
+        //         $sqlLogAdd = "INSERT INTO tbluserlogs (log_datetime, loginfo, employeeid) VALUES (:currentDateTime, :loginfo, :employeeid)";
+        //         $statementLogAdd = $pdo->prepare($sqlLogAdd);
+        //         $statementLogAdd->bindParam(':loginfo', $loginfo);
+        //         $statementLogAdd->bindParam(':employeeid', $employeeid);
+        //         $statementLogAdd->bindParam(':currentDateTime', $currentDateTime);
+        //         $statementLogAdd->execute();
+        //     } catch (PDOException $e) {
+        //         // Handle the exception/error
+        //         echo "Error: " . $e->getMessage();
+        //     }
+
+        //     header("Location: /admin_dashboard/products");
+        //     exit(); // Ensure to stop script execution after redirection
+        // } catch (PDOException $e) {
+        //     // Handle the exception/error
+        //     echo "Error: " . $e->getMessage();
+        //     // You can log the error or perform additional actions based on your requirements
+        // }
     }
 
 

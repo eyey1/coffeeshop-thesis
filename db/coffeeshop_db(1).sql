@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 25, 2024 at 06:27 PM
+-- Generation Time: Apr 24, 2024 at 02:11 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -167,11 +167,11 @@ CREATE TABLE `tblemployees` (
 --
 
 INSERT INTO `tblemployees` (`employeeID`, `firstname`, `lastname`, `email`, `position`, `hiredate`, `username`, `password`) VALUES
-(1, 'Super', 'Admin', 'superadmin@gmail.com', 'admin', '2024-04-01', 'superadmin', '$2y$10$ExJqrs6/0hYlS7mTyFwbN.ja1XeJAb78OZExDw5UxO2PAk91YL2yu'),
+(22, 'Sendo', 'Galang', 'sendo@gmail.com', 'admin', '2024-04-21', 'test', '$2y$10$vd6OH21OY7cDOiYQXIW0zevs7hDYGhmXnjMNP3ONyhO0I2yZNuDva'),
 (34, 'Jan', 'Manuel', 'jan@gmail.com', 'admin', '2024-04-23', 'enrique', '$2y$10$woVQnRr/aNbyJaSU6BxFuu03QDnKz34oqzPzYH6mKLzKNk0ZQBRGa'),
 (35, 'test', 'test', 'test@gmail.com', 'guest', '2024-04-23', 'testing', '$2y$10$FO9R0sczJKEUWd.AO7Ga8O0UXDHjL2v9UsKGU6l39ASpA7Z4WB85C'),
-(39, 'Juan', 'Luna', 'juan@gmail.com', 'guest', '2024-04-23', 'juan', '$2y$10$uerZ8nU9of.PLLelQqufcec3cz5ubJL.mbCdGGbdFTYfWLx5Y7Cvm'),
-(42, 'JP', 'Olarte', 'jp@gmail.com', 'admin', '2024-04-25', 'jp', '$2y$10$VVzxH5W.aTdBNNse4dzwRe4/iMvJ50hS.8rvsx.lztgH8kBv0S0KG');
+(36, 'Rosalyn', 'Balala', 'rosalyn@gmail.com', 'guest', '2024-04-23', 'rzbm', '$2y$10$g0TVE9.Urw.8Ka4E27YOeObtpaQRvm/70ESZoYZICYaO8SrKGn9nq'),
+(39, 'Juan', 'Luna', 'juan@gmail.com', 'guest', '2024-04-23', 'juan', '$2y$10$uerZ8nU9of.PLLelQqufcec3cz5ubJL.mbCdGGbdFTYfWLx5Y7Cvm');
 
 -- --------------------------------------------------------
 
@@ -192,7 +192,14 @@ CREATE TABLE `tblfeedback` (
 --
 
 INSERT INTO `tblfeedback` (`feedbackid`, `title`, `feedback_desc`, `feedback_datetime`, `customerid`) VALUES
-(19, 'Ako si test', 'tetesting ng buhay mo', '2024-04-23 14:58:06', 35);
+(9, 'test', 'testttt', '2024-04-21 01:31:53', 22),
+(10, 'test', 'testtt', '2024-04-21 01:32:32', 22),
+(11, 'test', 'testtt', '2024-04-21 03:14:14', 22),
+(12, 'test', 'testttttt', '2024-04-21 03:14:19', 22),
+(13, 'test', 'testtt', '2024-04-21 03:14:23', 22),
+(18, '145', '243524', '2024-04-23 10:29:04', 22),
+(19, 'Ako si test', 'tetesting ng buhay mo', '2024-04-23 14:58:06', 35),
+(20, 'Love kita', 'Enriks hehe', '2024-04-23 22:59:01', 36);
 
 -- --------------------------------------------------------
 
@@ -213,7 +220,7 @@ CREATE TABLE `tblinventory` (
 --
 
 INSERT INTO `tblinventory` (`inventory_id`, `inventory_item`, `item_type`, `quantity`, `unit`) VALUES
-(3, 'Powdered Sugar', 'Sweetener', 11, 'bags'),
+(3, 'Powdered Sugar', 'Sweetener', 10, 'bags'),
 (4, 'Arrabica Coffee Bean', 'Coffee Bean', 10, 'bags'),
 (5, 'Liberica Coffee Bean', 'Coffee Bean', 10, 'bags'),
 (6, 'Oat Milk', 'Milk', 10, 'Gallons'),
@@ -297,8 +304,7 @@ INSERT INTO `tblorders` (`order_id`, `order_type`, `order_datetime`, `base_coffe
 (84, 'take-out', '2024-04-20 22:54:20', 69, 9),
 (85, 'take-out', '2024-04-23 09:33:15', 69, 22),
 (86, 'take-out', '2024-04-23 09:33:15', 21, 22),
-(87, 'take-out', '2024-04-23 09:33:15', 69, 22),
-(88, 'take-out', '2024-04-24 19:44:48', 16, 34);
+(87, 'take-out', '2024-04-23 09:33:15', 69, 22);
 
 -- --------------------------------------------------------
 
@@ -407,7 +413,7 @@ CREATE TABLE `tblproducts` (
 --
 
 INSERT INTO `tblproducts` (`product_id`, `product_name`, `product_description`, `price`, `image`, `status`, `category`) VALUES
-(7, 'Salted Caramel Cold Breww', 'a salted caramel coffee that is brewed colddss', 130.00, 'coffee-3727673_640.jpg', 'Available', 'brewed'),
+(7, 'Salted Caramel Cold Breww', 'a salted caramel coffee that is brewed colddss', 130.00, 'stock-of-mix-a-cup-coffee-latte-more-motive-top-view-foodgraphy-generative-ai-photo.jpg', 'Available', 'brewed'),
 (10, 'Vanilla Cream Frappe', 'A coffee that is frapped with vanilla cream', 200.00, 'stock-of-mix-a-cup-coffee-latte-more-motive-top-view-foodgraphy-generative-ai-photo.jpg', 'Not Available', 'frappe'),
 (11, 'Iced Americano', 'A coffee that is americanized with ice', 100.00, 'stock-of-mix-a-cup-coffee-latte-more-motive-top-view-foodgraphy-generative-ai-photo.jpg', NULL, 'frappe'),
 (15, 'Iced White Chocolate mocha', 'A white chocolate flavored coffee with ice and mocha', 200.00, 'stock-of-mix-a-cup-coffee-latte-more-motive-top-view-foodgraphy-generative-ai-photo.jpg', NULL, 'espresso'),
@@ -510,32 +516,60 @@ CREATE TABLE `tbluserlogs` (
 --
 
 INSERT INTO `tbluserlogs` (`logid`, `log_datetime`, `loginfo`, `employeeid`) VALUES
+(107, '2024-04-23 11:06:06', 'sendo@gmail.com has edited an employee information.', 22),
+(108, '2024-04-23 11:06:42', 'sendo@gmail.com has added a new employee.', 22),
+(109, '2024-04-23 11:06:50', 'sendo@gmail.com has deleted a employee.', 22),
+(110, '2024-04-23 13:12:53', 'sendo@gmail.com has edited an employee information.', 22),
+(111, '2024-04-23 13:14:07', 'sendo@gmail.com has added a new employee.', 22),
+(112, '2024-04-23 13:14:30', 'sendo@gmail.com has edited an employee information.', 22),
+(113, '2024-04-23 13:42:07', 'sendo@gmail.com has added a new employee.', 22),
+(114, '2024-04-23 13:42:29', 'sendo@gmail.com has edited an employee information.', 22),
+(115, '2024-04-23 13:43:09', 'sendo@gmail.com has added a new employee.', 22),
+(116, '2024-04-23 13:55:03', 'sendo@gmail.com has edited an employee information.', 22),
+(117, '2024-04-23 13:57:54', 'sendo@gmail.com has added a new employee.', 22),
+(118, '2024-04-23 13:58:02', 'sendo@gmail.com has edited an employee information.', 22),
+(119, '2024-04-23 14:05:26', 'sendo@gmail.com has edited an employee information.', 22),
+(120, '2024-04-23 14:05:38', 'sendo@gmail.com has edited an employee information.', 22),
+(121, '2024-04-23 14:05:56', 'sendo@gmail.com has deleted a employee.', 22),
+(122, '2024-04-23 14:12:21', 'sendo@gmail.com has deleted a employee.', 22),
+(123, '2024-04-23 14:12:26', 'sendo@gmail.com has deleted a employee.', 22),
+(124, '2024-04-23 14:16:00', 'sendo@gmail.com has deleted a employee.', 22),
+(125, '2024-04-23 14:16:04', 'sendo@gmail.com has deleted a employee.', 22),
+(126, '2024-04-23 14:16:06', 'sendo@gmail.com has deleted a employee.', 22),
+(127, '2024-04-23 14:16:08', 'sendo@gmail.com has deleted a employee.', 22),
+(128, '2024-04-23 14:16:10', 'sendo@gmail.com has deleted a employee.', 22),
+(129, '2024-04-23 14:16:12', 'sendo@gmail.com has deleted a employee.', 22),
+(130, '2024-04-23 14:17:09', 'sendo@gmail.com has added a new employee.', 22),
+(131, '2024-04-23 14:17:31', 'sendo@gmail.com has edited an employee information.', 22),
+(132, '2024-04-23 14:36:43', 'sendo@gmail.com has added a new employee.', 22),
+(133, '2024-04-23 14:43:09', 'sendo@gmail.com has edited an employee information.', 22),
+(134, '2024-04-23 14:43:40', 'sendo@gmail.com has deleted a employee.', 22),
+(135, '2024-04-23 14:45:01', 'sendo@gmail.com has edited an employee information.', 22),
+(136, '2024-04-23 14:45:20', 'sendo@gmail.com has edited an employee information.', 22),
+(137, '2024-04-23 14:45:42', 'sendo@gmail.com has edited an employee information.', 22),
+(138, '2024-04-23 14:45:47', 'sendo@gmail.com has deleted a employee.', 22),
+(139, '2024-04-23 14:46:04', 'sendo@gmail.com has added a new employee.', 22),
+(140, '2024-04-23 14:46:17', 'sendo@gmail.com has edited an employee information.', 22),
+(141, '2024-04-23 14:52:19', 'sendo@gmail.com has edited an employee information.', 22),
+(142, '2024-04-23 14:55:00', 'sendo@gmail.com has edited an employee information.', 22),
+(143, '2024-04-23 14:55:21', 'sendo@gmail.com has deleted a employee.', 22),
+(144, '2024-04-23 14:55:24', 'sendo@gmail.com has deleted a employee.', 22),
+(145, '2024-04-23 14:55:34', 'sendo@gmail.com has edited an employee information.', 22),
+(146, '2024-04-23 14:55:37', 'sendo@gmail.com has deleted a employee.', 22),
+(147, '2024-04-23 14:55:57', 'sendo@gmail.com has added a new employee.', 22),
+(148, '2024-04-23 14:56:19', 'sendo@gmail.com has added a new employee.', 22),
+(149, '2024-04-23 14:56:39', 'sendo@gmail.com has edited an employee information.', 22),
+(150, '2024-04-01 22:43:40', 'qsefdfsd', 22),
+(151, '2024-04-23 22:58:03', 'sendo@gmail.com has added a new employee.', 22),
+(152, '2024-04-23 22:58:11', 'sendo@gmail.com has edited an employee information.', 22),
+(153, '2024-04-23 23:02:41', 'sendo@gmail.com has edited an employee information.', 22),
 (154, '2024-04-23 23:04:19', 'jan@gmail.com has edited an employee information.', 34),
 (155, '2024-04-23 23:12:50', 'jan@gmail.com has added a new employee.', 34),
 (156, '2024-04-23 23:13:14', 'jan@gmail.com has edited an employee information.', 34),
 (157, '2024-04-23 23:14:38', 'jan@gmail.com has edited an employee information.', 34),
 (158, '2024-04-23 23:15:08', 'jan@gmail.com has added a new employee.', 34),
 (159, '2024-04-23 23:15:17', 'jan@gmail.com has deleted a employee.', 34),
-(160, '2024-04-23 23:15:19', 'jan@gmail.com has deleted a employee.', 34),
-(161, '2024-04-24 16:05:37', 'jan@gmail.com has added a new employee.', 34),
-(162, '2024-04-24 16:05:47', 'jan@gmail.com has edited an employee information.', 34),
-(163, '2024-04-24 16:05:51', 'jan@gmail.com has edited an employee information.', 34),
-(164, '2024-04-24 16:06:07', 'jan@gmail.com has edited an employee information.', 34),
-(165, '2024-04-24 16:06:16', 'jan@gmail.com has edited an employee information.', 34),
-(166, '2024-04-24 16:06:25', 'jan@gmail.com has edited an employee information.', 34),
-(167, '2024-04-24 16:06:32', 'jan@gmail.com has deleted a employee.', 34),
-(168, '2024-04-25 14:06:17', 'jan@gmail.com has added a new employee.', 34),
-(169, '2024-04-25 14:06:24', 'jan@gmail.com has edited an employee information.', 34),
-(170, '2024-04-25 14:06:31', 'jan@gmail.com has edited an employee information.', 34),
-(171, '2024-04-25 14:06:35', 'jan@gmail.com has deleted a employee.', 34),
-(172, '2024-04-25 14:15:14', 'jan@gmail.com has deleted a employee.', 34),
-(173, '2024-04-25 14:19:25', 'jan@gmail.com has edited an employee information.', 34),
-(174, '2024-04-25 14:19:33', 'jan@gmail.com has edited an employee information.', 34),
-(175, '2024-04-25 14:22:41', 'jan@gmail.com has added a new employee.', 34),
-(176, '2024-04-25 14:23:45', 'jan@gmail.com has added a new employee.', 34),
-(177, '2024-04-25 14:24:35', 'jan@gmail.com has edited an employee information.', 34),
-(178, '2024-04-25 14:49:14', 'jan@gmail.com has edited an employee information.', 34),
-(179, '2024-04-25 23:32:37', 'jan@gmail.com has edited an employee information.', 34);
+(160, '2024-04-23 23:15:19', 'jan@gmail.com has deleted a employee.', 34);
 
 -- --------------------------------------------------------
 
@@ -692,13 +726,13 @@ ALTER TABLE `tblcartitem`
 -- AUTO_INCREMENT for table `tblcategory_inventory`
 --
 ALTER TABLE `tblcategory_inventory`
-  MODIFY `categoryInventory_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `categoryInventory_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- AUTO_INCREMENT for table `tblcategory_product`
 --
 ALTER TABLE `tblcategory_product`
-  MODIFY `categoryProduct_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `categoryProduct_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `tblcoffeeshop`
@@ -716,7 +750,7 @@ ALTER TABLE `tblcustomers`
 -- AUTO_INCREMENT for table `tblemployees`
 --
 ALTER TABLE `tblemployees`
-  MODIFY `employeeID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
+  MODIFY `employeeID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 
 --
 -- AUTO_INCREMENT for table `tblfeedback`
@@ -728,7 +762,7 @@ ALTER TABLE `tblfeedback`
 -- AUTO_INCREMENT for table `tblinventory`
 --
 ALTER TABLE `tblinventory`
-  MODIFY `inventory_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+  MODIFY `inventory_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 
 --
 -- AUTO_INCREMENT for table `tblorderitem`
@@ -740,7 +774,7 @@ ALTER TABLE `tblorderitem`
 -- AUTO_INCREMENT for table `tblorders`
 --
 ALTER TABLE `tblorders`
-  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=89;
+  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=88;
 
 --
 -- AUTO_INCREMENT for table `tblpayment`
@@ -752,7 +786,7 @@ ALTER TABLE `tblpayment`
 -- AUTO_INCREMENT for table `tblproducts`
 --
 ALTER TABLE `tblproducts`
-  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=72;
+  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=71;
 
 --
 -- AUTO_INCREMENT for table `tblproducts_inventory`
@@ -764,7 +798,7 @@ ALTER TABLE `tblproducts_inventory`
 -- AUTO_INCREMENT for table `tblpromo`
 --
 ALTER TABLE `tblpromo`
-  MODIFY `promoid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `promoid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `tbluser`
@@ -776,7 +810,7 @@ ALTER TABLE `tbluser`
 -- AUTO_INCREMENT for table `tbluserlogs`
 --
 ALTER TABLE `tbluserlogs`
-  MODIFY `logid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=180;
+  MODIFY `logid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=161;
 
 --
 -- AUTO_INCREMENT for table `testimonials`

@@ -2,6 +2,7 @@
 <?php require "partials/nav.php";
 include "connect.php"; ?>
 
+<link rel="stylesheet" href="/Dashboard/css/products.css">
 <style>
     body {
         font-family: Arial, sans-serif;
@@ -257,7 +258,7 @@ include "connect.php"; ?>
                                                 <?php echo $row['username']; ?>
                                             <?php endif; ?>
                                         </td>
-                                        <td>
+                                        <td style="display: inline-flex; width: 100%; gap:10px; text-align: center; justify-content: center;">
                                             <?php if (isset($_POST['edit']) && $_POST['edit'] == $row['employeeID']) : ?>
 
                                                 <button type="submit" name="save" class="button edit-button" value="<?php echo $row['employeeID']; ?>">💾</button>

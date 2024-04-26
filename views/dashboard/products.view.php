@@ -418,7 +418,7 @@ $db = App::resolve('Core\Database');
                         </tr>
                         <tr class="edit-form" id="editForm<?= $products['product_id'] ?>">
                             <td colspan="6">
-                                <form method="post" action="/admin_dashboard/products">
+                                <form method="post" enctype="multipart/form-data" action="/admin_dashboard/products">
                                     <input type="hidden" name="edit_product_id" value="<?= $products['product_id'] ?>">
                                     <input type="text" name="edited_product" placeholder="Edit Product Name" value="<?= $products['product_name'] ?>" required>
                                     <textarea name="edited_description" rows="2" cols="50" placeholder="Edit Product Description:" required><?= $products['product_description'] ?></textarea>
@@ -433,6 +433,9 @@ $db = App::resolve('Core\Database');
 
                                         <?php endforeach; ?>
                                     </select>
+
+
+                                    <input type="file" name="edited_image" id="edited_image" required>
 
                                     <button type="submit" name="submit_edit" class="button edit-button">💾</button>
                                 </form>
