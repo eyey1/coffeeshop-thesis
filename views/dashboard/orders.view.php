@@ -134,8 +134,8 @@ include "connect.php";
                                         <?php echo $row['order_status']; ?>
                                     </td>
                                     <td>
-                                        <button type="submit" name="finish_order" value="<?php echo $row['orderitem_id']; ?>">Finish</button>
-                                        <button type="submit" name="ended_order" value="<?php echo $row['orderitem_id']; ?>">End</button>
+                                        <button type="submit" name="finish_order" value="<?php echo $row['orderitem_id']; ?>" onclick="return confirm('Are you sure you finish this order?');">Finish</button>
+                                        <button type="submit" name="ended_order" value="<?php echo $row['orderitem_id']; ?>" onclick="return confirm('Are you sure you want to archive this order?');">End</button>
                                     </td>
                                 </tr>
                             <?php endwhile; ?>
@@ -268,7 +268,7 @@ include "connect.php";
                                         <?php echo $row['order_status']; ?>
                                     </td>
                                     <td>
-                                        <button type="submit" name="unarchive_order" value="<?php echo $row['orderitem_id']; ?>">Un-archive</button>
+                                        <button type="submit" name="unarchive_order" value="<?php echo $row['orderitem_id']; ?>" onclick="return confirm('Are you sure you want to return this order to active?');">Un-archive</button>
                                     </td>
                                 </tr>
                             <?php endwhile; ?>

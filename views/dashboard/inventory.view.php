@@ -275,22 +275,25 @@
     });
 
     //alert add
-    document.addEventListener("DOMContentLoaded", function() {
-        document.getElementById("addButton").addEventListener("click", function() {
-            confirm("Are you sure you want to add this inventory?");
-        });
-    });
+    function confirmAdd() {
+        return confirm("Are you sure you want to add this inventory?");
+    }
 
-    //alert update
-    document.addEventListener("DOMContentLoaded", function() {
-        document.getElementById("applyUpdateButton").addEventListener("click", function() {
-            confirm("Are you sure you want to apply this update to all inventory items?");
-        });
-    });
+
+    //alert update all inventory
+    function confirmUpdate() {
+        return confirm("Are you sure you want to apply this update to all inventory items?");
+    }
+
 
     //alert delete
     function confirmDelete() {
-        confirm("Are you sure you want to delete this inventory item?");
+        return confirm("Are you sure you want to delete this inventory item?");
+    }
+
+    //alert update current inventory
+    function confirmEdit() {
+        return confirm("Are you sure you want to edit this inventory item?");
     }
 </script>
 
@@ -301,7 +304,7 @@
         <div class="info-box">
             <button id="closeFormBtn" class="button delete-button">X</button>
             <h2>Add New Inventory</h2>
-            <form method="post" action="/admin_dashboard/inventory" id="addInventoryForm">
+            <form method="post" action="/admin_dashboard/inventory" id="addInventoryForm" onsubmit="return confirmAdd()">
                 <div class="form-group">
                     <label for="new_item">Inventory Item:</label>
                     <input type="text" class="form-control" name="new_item" placeholder="Inventory Item:" required>
@@ -337,7 +340,7 @@
         <div class="info-box">
             <button id="closeUpdateFormBtn" class="button delete-button">X</button>
             <h2>Update All Inventory</h2>
-            <form method="post" action="/admin_dashboard/inventory" id="updateInventoryForm">
+            <form method="post" action="/admin_dashboard/inventory" id="updateInventoryForm" onsubmit="return confirmUpdate()">
                 <div>
                     <table class="tableDefault">
                         <tr class="tableDefault">
@@ -383,7 +386,7 @@
                                 <?= $category['inventory_category'] ?>
                             </td>
                             <td>
-                                <form method="post" action="/admin_dashboard/inventory">
+                                <form method="post" action="/admin_dashboard/inventory" onsubmit="return confirm('Are you sure you want to delete this category?');">
                                     <input type="hidden" name="update_category_id" value="<?= $category['categoryInventory_id'] ?>">
                                     <button type="button" class="button edit-button" onclick="toggleEditCategoryForm('editCategory<?= $category['categoryInventory_id'] ?>')">✎</button>
                                     <input type="hidden" name="delete_category_id" value="<?= $category['categoryInventory_id'] ?>">
@@ -393,7 +396,7 @@
                         </tr>
                         <tr class="edit-form" id="editCategory<?= $category['categoryInventory_id'] ?>">
                             <td colspan="2">
-                                <form method="post" action="">
+                                <form method="post" action="" onsubmit="return confirm('Are you sure you want to change this category?');">
                                     <input type="hidden" name="update_category_id" value="<?= $category['categoryInventory_id'] ?>">
                                     <input type="text" name="update_inventoryCategory" value="<?= $category['inventory_category'] ?>" required>
                                     <button type="submit" name="update_category" class="button edit-button">💾</button>
@@ -405,7 +408,7 @@
                 </table>
             </div>
             <h2>Add New Category</h2>
-            <form method="post" action="/admin_dashboard/inventory">
+            <form method="post" action="/admin_dashboard/inventory" onsubmit="return confirm('Are you sure you want to add this category?');">
                 <div class="form-group">
                     <label for="new_category">Inventory Item:</label>
                     <input type="text" class="form-control" name="new_category" placeholder="Category Name" required>
@@ -500,7 +503,7 @@
                             </tr>
                             <tr class="edit-form" id="editForm<?= $item['inventory_id'] ?>">
                                 <td colspan="7">
-                                    <form method="post" action="/admin_dashboard/inventory">
+                                    <form method="post" action="/admin_dashboard/inventory" onsubmit="return confirmEdit()">
                                         <input type="hidden" name="edit_item_id" value="<?= $item['inventory_id'] ?>">
                                         <input type="text" name="edited_item" placeholder="Edit Item" value="<?= $item['inventory_item'] ?>" required>
                                         <select name="edited_type" id="edited_type" required>

@@ -156,7 +156,7 @@ $db = App::resolve('Core\Database');
                     </h4>
                 </div>
                 <div>
-                    <form method="post" action="">
+                    <form method="post" action="" onsubmit="return confirm('Are you sure you want to reset all of the ingredients for this product?');">
                         <div id="dropdowns-container<?= $products['product_id'] ?>">
                             <table class="tableDefault">
                                 <?php
@@ -217,7 +217,7 @@ $db = App::resolve('Core\Database');
                                 <?= $category['category'] ?>
                             </td>
                             <td>
-                                <form method="post" action="">
+                                <form method="post" action="" onsubmit="return confirm('Are you sure you want to delete this product category?');">
                                     <input type="hidden" name="update_category_id" value="<?= $category['categoryProduct_id'] ?>">
                                     <button type="button" class="button edit-button" onclick="toggleEditCategoryForm('editCategory<?= $category['categoryProduct_id'] ?>')">✎</button>
                                     <input type="hidden" name="delete_category_id" value="<?= $category['categoryProduct_id'] ?>">
@@ -227,7 +227,7 @@ $db = App::resolve('Core\Database');
                         </tr>
                         <tr class="edit-form" id="editCategory<?= $category['categoryProduct_id'] ?>">
                             <td colspan="2">
-                                <form method="post" action="">
+                                <form method="post" action="" onsubmit="return confirm('Are you sure you want to change this product category?');">
                                     <input type="hidden" name="update_category_id" value="<?= $category['categoryProduct_id'] ?>">
                                     <input type="text" name="update_productCategory" value="<?= $category['category'] ?>" required>
                                     <button type="submit" name="update_product" class="button edit-button">💾</button>
@@ -238,7 +238,7 @@ $db = App::resolve('Core\Database');
                     <?php endforeach; ?>
                 </table>
             </div>
-            <form method="post" action="">
+            <form method="post" action="" onsubmit="return confirm('Are you sure you want to add this new product category?');">
                 <div class="form-group">
                     <label for="new_category">Inventory Item:</label>
                     <input type="text" class="form-control" name="new_category" placeholder="Category Name" required>
@@ -289,7 +289,7 @@ $db = App::resolve('Core\Database');
                                 <?= $promos['enddate'] ?>
                             </td>
                             <td>
-                                <form method="post" action="">
+                                <form method="post" action="" onsubmit="return confirm('Are you sure you want to delete this promo?');">
                                     <input type="hidden" name="update_promo_id" value="<?= $promos['promoid'] ?>">
                                     <button type="button" class="button edit-button" onclick="toggleEditCategoryForm('editPromo<?= $promos['promoid'] ?>')">✎</button>
                                     <input type="hidden" name="delete_promo_id" value="<?= $promos['promoid'] ?>">
@@ -297,7 +297,7 @@ $db = App::resolve('Core\Database');
                                 </form>
                             </td>
                         </tr>
-                        <tr class="edit-form" id="editPromo<?= $promos['promoid'] ?>">
+                        <tr class="edit-form" id="editPromo<?= $promos['promoid'] ?>" onsubmit="return confirm('Are you sure you want to save changes for this promo?');">
                             <td colspan="7">
                                 <form method="post" action="">
                                     <input style="width: auto; max-width:150px;" type="hidden" name="update_promo_id" value="<?= $promos['promoid'] ?>" required>
@@ -316,7 +316,7 @@ $db = App::resolve('Core\Database');
                 </table>
             </div>
             <h2>Add New Promo</h2>
-            <form method="post" action="">
+            <form method="post" action="" onsubmit="return confirm('Are you sure you want to add this promo?');">
                 <div class="form-group">
                     <label for="new_promoName">Promo Name:</label>
                     <input type="text" class="form-control" name="new_promoName" placeholder="Enter promo name" required>
@@ -408,7 +408,7 @@ $db = App::resolve('Core\Database');
                             </td>
 
                             <td class="action-buttons" style="text-align:center;">
-                                <form method="post" action="" class="button-form" onsubmit="return confirmDelete()">
+                                <form method="post" action="" class="button-form" onsubmit="return confirm('Are you sure you want to delete this product?');">
                                     <input type="hidden" name="edit_product_id" value="<?= $products['product_id'] ?>">
                                     <button type="button" class="button edit-button" onclick="toggleEditFormy('editForm<?= $products['product_id'] ?>')">✎</button>
                                     <input type="hidden" name="delete_product_id" value="<?= $products['product_id'] ?>">
@@ -418,7 +418,7 @@ $db = App::resolve('Core\Database');
                         </tr>
                         <tr class="edit-form" id="editForm<?= $products['product_id'] ?>">
                             <td colspan="6">
-                                <form method="post" enctype="multipart/form-data" action="/admin_dashboard/products">
+                                <form method="post" enctype="multipart/form-data" action="/admin_dashboard/products" onsubmit="return confirm('Are you sure you want to save changes for this product?');">
                                     <input type="hidden" name="edit_product_id" value="<?= $products['product_id'] ?>">
                                     <input type="text" name="edited_product" placeholder="Edit Product Name" value="<?= $products['product_name'] ?>" required>
                                     <textarea name="edited_description" rows="2" cols="50" placeholder="Edit Product Description:" required><?= $products['product_description'] ?></textarea>

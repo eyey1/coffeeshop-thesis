@@ -150,7 +150,8 @@ include "connect.php"; ?>
                 <input type="password" class="form-control" name="create_password" id="create_password" required>
                 <input type="checkbox" onclick="togglePassForm()"> show password
             </div>
-            <button type="submit" name="create">Create</button>
+            <button type="submit" name="create" onclick="return confirm('Are you sure you want to create this user?');">Create</button>
+
         </form>
     </div>
 </div>
@@ -165,130 +166,130 @@ include "connect.php"; ?>
         </div>
         <div>
             <div class="table-responsive">
-                <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
-                    <table id="dataTable" width="100%" cellspacing="0">
-                        <thead>
-                            <tr>
-                                <th>First Name</th>
-                                <th>Last Name</th>
-                                <th>Email</th>
-                                <th>Position</th>
-                                <th>Account Created</th>
-                                <th>Username</th>
-                                <th>Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php
+                <!-- <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>"> -->
+                <table id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Email</th>
+                            <th>Position</th>
+                            <th>Account Created</th>
+                            <th>Username</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
 
-                            // $servername = "localhost";
-                            // $username = "root";
-                            // $password = "";
-                            // $dbname = "coffeeshop_db";
+                        // $servername = "localhost";
+                        // $username = "root";
+                        // $password = "";
+                        // $dbname = "coffeeshop_db";
 
-                            // // Create a database connection
-                            // $conn = new mysqli($servername, $username, $password, $dbname);
+                        // // Create a database connection
+                        // $conn = new mysqli($servername, $username, $password, $dbname);
 
-                            // if ($conn->connect_error) {
-                            //     die("Connection failed: " . $conn->connect_error);
-                            // }
+                        // if ($conn->connect_error) {
+                        //     die("Connection failed: " . $conn->connect_error);
+                        // }
 
-                            $sql = "SELECT * FROM tblemployees ORDER BY position";
-                            $result = $conn->query($sql);
+                        $sql = "SELECT * FROM tblemployees ORDER BY position";
+                        $result = $conn->query($sql);
 
-                            $conn->close();
-                            while ($row = $result->fetch_assoc()) : ?>
-                                <form action="/admin_dashboard/staffs" method="POST">
-                                    <tr>
-                                        <td>
-                                            <?php if (isset($_POST['edit']) && $_POST['edit'] == $row['employeeID']) : ?>
-                                                <input type="text" name="firstname_<?php echo $row['employeeID']; ?>" value="<?php echo $row['firstname']; ?>" required>
-                                            <?php elseif (isset($_POST['cancel']) && $_POST['cancel'] == $row['employeeID']) : ?>
-                                                <?php echo $row['firstname']; ?>
-                                            <?php else : ?>
-                                                <?php echo $row['firstname']; ?>
-                                            <?php endif; ?>
-                                        </td>
-                                        <td>
-                                            <?php if (isset($_POST['edit']) && $_POST['edit'] == $row['employeeID']) : ?>
-                                                <input type="text" name="lastname_<?php echo $row['employeeID']; ?>" value="<?php echo $row['lastname']; ?>" required>
-                                            <?php elseif (isset($_POST['cancel']) && $_POST['cancel'] == $row['employeeID']) : ?>
-                                                <?php echo $row['lastname']; ?>
-                                            <?php else : ?>
-                                                <?php echo $row['lastname']; ?>
-                                            <?php endif; ?>
-                                        </td>
-                                        <td>
-                                            <?php if (isset($_POST['edit']) && $_POST['edit'] == $row['employeeID']) : ?>
-                                                <input type="text" name="email_<?php echo $row['employeeID']; ?>" value="<?php echo $row['email']; ?>" required>
-                                            <?php elseif (isset($_POST['cancel']) && $_POST['cancel'] == $row['employeeID']) : ?>
-                                                <?php echo $row['email']; ?>
-                                            <?php else : ?>
-                                                <?php echo $row['email']; ?>
-                                            <?php endif; ?>
-                                        </td>
-                                        <td>
-                                            <?php if (isset($_POST['edit']) && $_POST['edit'] == $row['employeeID']) : ?>
-                                                <select name="position_<?php echo $row['employeeID']; ?>" id="position_<?php echo $row['employeeID']; ?>" required>
-                                                    <option value="" disabled>Select Position:</option>
-                                                    <option value="admin" <?php echo ($row['position'] == 'admin') ? 'selected' : ''; ?>>Admin</option>
-                                                    <option value="guest" <?php echo ($row['position'] == 'guest') ? 'selected' : ''; ?>>Guest</option>
-                                                </select>
-                                            <?php elseif (isset($_POST['cancel']) && $_POST['cancel'] == $row['employeeID']) : ?>
-                                                <?php echo $row['position']; ?>
-                                            <?php else : ?>
-                                                <?php echo $row['position']; ?>
-                                            <?php endif; ?>
-                                        </td>
-                                        <td>
-                                            <?php if (isset($_POST['edit']) && $_POST['edit'] == $row['employeeID']) : ?>
-                                                <input type="date" name="hiredate_<?php echo $row['employeeID']; ?>" value="<?php echo $row['hiredate']; ?>" required>
-                                            <?php elseif (isset($_POST['cancel']) && $_POST['cancel'] == $row['employeeID']) : ?>
-                                                <?php echo $row['hiredate']; ?>
-                                            <?php else : ?>
-                                                <?php echo $row['hiredate']; ?>
-                                            <?php endif; ?>
-                                        </td>
-                                        <td>
-                                            <?php if (isset($_POST['edit']) && $_POST['edit'] == $row['employeeID']) : ?>
-                                                <input type="text" name="username_<?php echo $row['employeeID']; ?>" value="<?php echo $row['username']; ?>" required>
-                                            <?php elseif (isset($_POST['cancel']) && $_POST['cancel'] == $row['employeeID']) : ?>
-                                                <?php echo $row['username']; ?>
-                                            <?php else : ?>
-                                                <?php echo $row['username']; ?>
-                                            <?php endif; ?>
-                                        </td>
-                                        <td style="display: inline-flex; width: 100%; gap:10px; text-align: center; justify-content: center;">
-                                            <?php if (isset($_POST['edit']) && $_POST['edit'] == $row['employeeID']) : ?>
+                        $conn->close();
+                        while ($row = $result->fetch_assoc()) : ?>
+                            <form action="/admin_dashboard/staffs" method="POST">
+                                <tr>
+                                    <td>
+                                        <?php if (isset($_POST['edit']) && $_POST['edit'] == $row['employeeID']) : ?>
+                                            <input type="text" name="firstname_<?php echo $row['employeeID']; ?>" value="<?php echo $row['firstname']; ?>" required>
+                                        <?php elseif (isset($_POST['cancel']) && $_POST['cancel'] == $row['employeeID']) : ?>
+                                            <?php echo $row['firstname']; ?>
+                                        <?php else : ?>
+                                            <?php echo $row['firstname']; ?>
+                                        <?php endif; ?>
+                                    </td>
+                                    <td>
+                                        <?php if (isset($_POST['edit']) && $_POST['edit'] == $row['employeeID']) : ?>
+                                            <input type="text" name="lastname_<?php echo $row['employeeID']; ?>" value="<?php echo $row['lastname']; ?>" required>
+                                        <?php elseif (isset($_POST['cancel']) && $_POST['cancel'] == $row['employeeID']) : ?>
+                                            <?php echo $row['lastname']; ?>
+                                        <?php else : ?>
+                                            <?php echo $row['lastname']; ?>
+                                        <?php endif; ?>
+                                    </td>
+                                    <td>
+                                        <?php if (isset($_POST['edit']) && $_POST['edit'] == $row['employeeID']) : ?>
+                                            <input type="text" name="email_<?php echo $row['employeeID']; ?>" value="<?php echo $row['email']; ?>" required>
+                                        <?php elseif (isset($_POST['cancel']) && $_POST['cancel'] == $row['employeeID']) : ?>
+                                            <?php echo $row['email']; ?>
+                                        <?php else : ?>
+                                            <?php echo $row['email']; ?>
+                                        <?php endif; ?>
+                                    </td>
+                                    <td>
+                                        <?php if (isset($_POST['edit']) && $_POST['edit'] == $row['employeeID']) : ?>
+                                            <select name="position_<?php echo $row['employeeID']; ?>" id="position_<?php echo $row['employeeID']; ?>" required>
+                                                <option value="" disabled>Select Position:</option>
+                                                <option value="admin" <?php echo ($row['position'] == 'admin') ? 'selected' : ''; ?>>Admin</option>
+                                                <option value="guest" <?php echo ($row['position'] == 'guest') ? 'selected' : ''; ?>>Guest</option>
+                                            </select>
+                                        <?php elseif (isset($_POST['cancel']) && $_POST['cancel'] == $row['employeeID']) : ?>
+                                            <?php echo $row['position']; ?>
+                                        <?php else : ?>
+                                            <?php echo $row['position']; ?>
+                                        <?php endif; ?>
+                                    </td>
+                                    <td>
+                                        <?php if (isset($_POST['edit']) && $_POST['edit'] == $row['employeeID']) : ?>
+                                            <input type="date" name="hiredate_<?php echo $row['employeeID']; ?>" value="<?php echo $row['hiredate']; ?>" required>
+                                        <?php elseif (isset($_POST['cancel']) && $_POST['cancel'] == $row['employeeID']) : ?>
+                                            <?php echo $row['hiredate']; ?>
+                                        <?php else : ?>
+                                            <?php echo $row['hiredate']; ?>
+                                        <?php endif; ?>
+                                    </td>
+                                    <td>
+                                        <?php if (isset($_POST['edit']) && $_POST['edit'] == $row['employeeID']) : ?>
+                                            <input type="text" name="username_<?php echo $row['employeeID']; ?>" value="<?php echo $row['username']; ?>" required>
+                                        <?php elseif (isset($_POST['cancel']) && $_POST['cancel'] == $row['employeeID']) : ?>
+                                            <?php echo $row['username']; ?>
+                                        <?php else : ?>
+                                            <?php echo $row['username']; ?>
+                                        <?php endif; ?>
+                                    </td>
+                                    <td style="display: inline-flex; width: 100%; gap:10px; text-align: center; justify-content: center;">
+                                        <?php if (isset($_POST['edit']) && $_POST['edit'] == $row['employeeID']) : ?>
 
-                                                <button type="submit" name="save" class="button edit-button" value="<?php echo $row['employeeID']; ?>">💾</button>
-                                </form>
-                                <form action="/admin_dashboard/staffs" method="POST">
-                                    <button type="submit" name="cancel" class="button delete-button" value="<?php echo $row['employeeID']; ?>">✖</button>
-                                </form>
-                            <?php elseif ($row['position'] === "admin" && $row['employeeID'] === "1") : ?>
-                                <form action="/admin_dashboard/staffs" method="POST">
-                                    <button type="submit" name="edit" class="button edit-button" value="<?php echo $row['employeeID']; ?>" style="background-color:grey;" disabled>Super Admin</button>
-                                </form>
-                            <?php elseif ($row['position'] === "admin") : ?>
-                                <form action="/admin_dashboard/staffs" method="POST">
-                                    <button type="submit" name="edit" class="button edit-button" value="<?php echo $row['employeeID']; ?>">✎</button>
-                                </form>
+                                            <button type="submit" name="save" class="button edit-button" value="<?php echo $row['employeeID']; ?>" onclick="return confirm('Are you sure you want to save changes for this account?');">💾</button>
+                            </form>
+                            <form action="/admin_dashboard/staffs" method="POST" onsubmit="return confirm('Are you sure you want to save changes for this account?');">
+                                <button type="submit" name="cancel" class="button delete-button" value="<?php echo $row['employeeID']; ?>">✖</button>
+                            </form>
+                        <?php elseif ($row['position'] === "admin" && $row['employeeID'] === "1") : ?>
+                            <form action="/admin_dashboard/staffs" method="POST">
+                                <button type="submit" name="edit" class="button edit-button" value="<?php echo $row['employeeID']; ?>" style="background-color:grey;" disabled>Super Admin</button>
+                            </form>
+                        <?php elseif ($row['position'] === "admin") : ?>
+                            <form action="/admin_dashboard/staffs" method="POST">
+                                <button type="submit" name="edit" class="button edit-button" value="<?php echo $row['employeeID']; ?>">✎</button>
+                            </form>
 
-                            <?php else : ?>
-                                <form action="/admin_dashboard/staffs" method="POST">
-                                    <button type="submit" name="edit" class="button edit-button" value="<?php echo $row['employeeID']; ?>">✎</button>
-                                </form>
-                                <form action="/admin_dashboard/staffs" method="POST" onsubmit="return confirm('Are you sure you want to delete this record?');">
-                                    <button type="submit" name="delete" class="button delete-button" value="<?php echo $row['employeeID']; ?>">✖</button>
-                                </form>
-                            <?php endif; ?>
-                            </td>
-                            </tr>
-                        <?php endwhile; ?>
-                        </tbody>
-                    </table>
-                </form>
+                        <?php else : ?>
+                            <form action="/admin_dashboard/staffs" method="POST">
+                                <button type="submit" name="edit" class="button edit-button" value="<?php echo $row['employeeID']; ?>">✎</button>
+                            </form>
+                            <form action="/admin_dashboard/staffs" method="POST" onsubmit="return confirm('Are you sure you want to delete this account?');">
+                                <button type="submit" name="delete" class="button delete-button" value="<?php echo $row['employeeID']; ?>">✖</button>
+                            </form>
+                        <?php endif; ?>
+                        </td>
+                        </tr>
+                    <?php endwhile; ?>
+                    </tbody>
+                </table>
+                <!-- </form> -->
             </div>
 
         </div>
