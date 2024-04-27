@@ -45,7 +45,7 @@
                     <canvas id="totalOrdersChart"></canvas>
                 </div>
                 <div class="chart-container">
-                    <h2 class="chart-title">Total Customer Accounts</h2>
+                    <h2 class="chart-title">Total Accounts</h2>
                     <canvas id="totalVisitorsChart"></canvas>
                 </div>
                 <div class="chart-container">
@@ -84,11 +84,11 @@
                     data: [totalOrders],
                     backgroundColor: '#007BFF', // Blue color for orders
                 },
-                {
-                    label: 'Remaining',
-                    data: [remainingPercentageOrders],
-                    backgroundColor: '#E0E0E0', // Light gray for the remaining percentage baguhin na lang sa susunod
-                }
+                // {
+                //     label: 'Remaining',
+                //     data: [remainingPercentageOrders],
+                //     backgroundColor: '#E0E0E0', // Light gray for the remaining percentage baguhin na lang sa susunod
+                // }
             ]
         },
         options: {
@@ -111,20 +111,20 @@
 
     var ctxVisitors = document.getElementById('totalVisitorsChart').getContext('2d');
     var totalVisitors = <?= $visitorData['customer_ID']; ?>;
-    var remainingPercentage = 100 - totalVisitors;
+    var totalAdmin = <?= $adminData['customer_ID']; ?>;
 
     var visitorsChart = new Chart(ctxVisitors, {
         type: 'bar',
         data: {
-            labels: ['Visitors'],
+            labels: ['Accounts'],
             datasets: [{
-                    label: 'Visitors',
+                    label: 'Customers',
                     data: [totalVisitors],
                     backgroundColor: '#4CAF50', // Green for visitors
                 },
                 {
-                    label: 'Remaining',
-                    data: [remainingPercentage],
+                    label: 'Admin',
+                    data: [totalAdmin],
                     backgroundColor: '#E0E0E0', // Light gray for the remaining percentage baguhin na lang sa susunod
                 }
             ]

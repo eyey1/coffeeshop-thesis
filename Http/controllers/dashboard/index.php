@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 use Core\App;
 use Core\Database;
@@ -11,8 +11,12 @@ $sqlOrders = "SELECT COUNT(*) AS order_ID FROM tblorders";
 $orderData = $db->query($sqlOrders)->find();
 
 // Total visitors
-$sqlVisitors = "SELECT COUNT(*) AS customer_ID FROM tblcustomers";
+$sqlVisitors = "SELECT COUNT(*) AS customer_ID FROM tblemployees WHERE position LIKE 'guest'; ";
 $visitorData = $db->query($sqlVisitors)->find();
+
+// Total admin
+$sqlAdmin = "SELECT COUNT(*) AS customer_ID FROM tblemployees WHERE position LIKE 'admin'; ";
+$adminData = $db->query($sqlAdmin)->find();
 
 // Daily Sales data
 $sqlSales = "SELECT DAYOFWEEK(p.order_datetime) AS dayOfWeek, SUM(p.amountpayed) AS dailySales 
@@ -32,7 +36,8 @@ $monthlySalesData = $db->query($sqlMonthlySales)->get();
 view('dashboard/index.view.php', [
     'orderData' => $orderData,
     'visitorData' => $visitorData,
+    'adminData' => $adminData,
     'salesData' => $salesData,
     'orderTasksData' => $orderTasksData,
-   'monthlySalesData' => $monthlySalesData,
+    'monthlySalesData' => $monthlySalesData,
 ]);
