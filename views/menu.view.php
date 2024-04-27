@@ -6,145 +6,180 @@
 
 <style>
     .category-btn-checkbox {
-        display: none; /* hide the checkbox */
+        display: none;
+        /* hide the checkbox */
     }
 
     .category-btn-label {
         display: inline-block;
         padding: 10px 20px;
-        background-color: red; /* primary button color */
+        background-color: red;
+        /* primary button color */
         color: #fff;
         cursor: pointer;
     }
 
     .category-btn-label.selected {
-        background-color: #ffffff; /* secondary button color */
+        background-color: #ffffff;
+        /* secondary button color */
     }
 
-/* Mark input boxes that gets an error on validation: */
-input.invalid {
-  background-color: #ffdddd;
-}
+    /* Mark input boxes that gets an error on validation: */
+    input.invalid {
+        background-color: #ffdddd;
+    }
 
-/* Hide all steps by default: */
-.tab {
-  display: none;
-}
+    /* Hide all steps by default: */
+    .tab {
+        display: none;
+    }
 
-button {
-  background-color: #04AA6D;
-  color: #ffffff;
-  border: none;
-  padding: 10px 20px;
-  font-size: 17px;
-  font-family: Raleway;
-  cursor: pointer;
-}
+    button {
+        background-color: #04AA6D;
+        color: #ffffff;
+        border: none;
+        padding: 10px 20px;
+        font-size: 17px;
+        font-family: Raleway;
+        cursor: pointer;
+    }
 
-button:hover {
-  opacity: 0.8;
-}
+    button:hover {
+        opacity: 0.8;
+    }
 
-#prevBtn {
-  background-color: #bbbbbb;
-}
+    #prevBtn {
+        background-color: #bbbbbb;
+    }
 
-/* Make circles that indicate the steps of the form: */
-.step {
-  height: 15px;
-  width: 15px;
-  margin: 0 2px;
-  background-color: #bbbbbb;
-  border: none;  
-  border-radius: 50%;
-  display: none;
-  opacity: 0.5;
-}
+    /* Make circles that indicate the steps of the form: */
+    .step {
+        height: 15px;
+        width: 15px;
+        margin: 0 2px;
+        background-color: #bbbbbb;
+        border: none;
+        border-radius: 50%;
+        display: none;
+        opacity: 0.5;
+    }
 
-.step.active {
-  opacity: 1;
-}
+    .step.active {
+        opacity: 1;
+    }
 
-/* Mark the steps that are finished and valid: */
-.step.finish {
-  background-color: #04AA6D;
-}
+    /* Mark the steps that are finished and valid: */
+    .step.finish {
+        background-color: #04AA6D;
+    }
 </style>
-    
 
 
-    <!-- Page Header Start -->
-    <div class="container-fluid page-header mb-5 position-relative overlay-bottom">
-        <div class="d-flex flex-column align-items-center justify-content-center pt-0 pt-lg-5"
-            style="min-height: 400px">
-            <h1 class="display-4 mb-3 mt-0 mt-lg-5 text-white text-uppercase">Menu</h1>
-            <div class="d-inline-flex mb-lg-5">
-                <p class="m-0 text-white"><a class="text-white" href="">Home</a></p>
-                <p class="m-0 text-white px-2">/</p>
-                <p class="m-0 text-white">Menu</p>
-            </div>
+
+<!-- Page Header Start -->
+<div class="container-fluid page-header mb-5 position-relative overlay-bottom">
+    <div class="d-flex flex-column align-items-center justify-content-center pt-0 pt-lg-5" style="min-height: 400px">
+        <h1 class="display-4 mb-3 mt-0 mt-lg-5 text-white text-uppercase">Menu</h1>
+        <div class="d-inline-flex mb-lg-5">
+            <p class="m-0 text-white"><a class="text-white" href="">Home</a></p>
+            <p class="m-0 text-white px-2">/</p>
+            <p class="m-0 text-white">Menu</p>
         </div>
     </div>
-    <!-- Page Header End -->
+</div>
+<!-- Page Header End -->
 
-    <!-- Menu Start -->
-    <div id="product-container" class="container-fluid pt-5">
-        <div class="container" id="product-list">
-            <div class="section-title">
-                <h4 class="text-primary text-uppercase" style="letter-spacing: 5px;">Menu & Pricing</h4>
-                <h1 class="display-4">Competitive Pricing</h1>
+<!-- Menu Start -->
+<div id="product-container" class="container-fluid pt-5">
+    <div class="container" id="product-list">
+        <div class="section-title">
+            <h4 class="text-primary text-uppercase" style="letter-spacing: 5px;">Menu & Pricing</h4>
+            <h1 class="display-4">Competitive Pricing</h1>
 
-                <div class="dashboard">
-                    <div class="content">
-                            <div>
-                                <table>
-                                    <thead>
-                                        <tr>
-                                            <th>Product Name</th>
-                                            <th>Product Description</th>
-                                            <th>Price</th>
-                                            <th>Image</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody id="tbl_body">
+            <div class="dashboard">
+                <div class="content">
+                    <div>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Product Name</th>
+                                    <th>Product Description</th>
+                                    <th>Price</th>
+                                    <th>Status</th>
+                                    <th>Image</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tbl_body">
 
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
+                            </tbody>
+                        </table>
                     </div>
-
-                <script>
-                    // Fetch product data from the backend
-                    fetch('/get_products')
-                        .then(response => response.json())
-                        .then(products => {
-                            const productContainer = document.getElementById('tbl_body');
-
-                            // Loop through the products and display them
-                            products.forEach(product => {
-                                const productCard = document.createElement('tr');
-                                // productCard.className = 'col-lg-4 col-md-6 mb-5';
-                                productCard.innerHTML = `
-                                                        <td><a href =/show_product?id=${product.product_id}>${product.product_name}</a></td>
-                                                        <td>${product.product_description}</td>
-                                                        <td>${product.price}</td>
-                                                        <td><img height="100px" src="uploads/${product.image}" alt="${product.product_name}"></td>
-                                                    `;
-                                productContainer.appendChild(productCard);
-                            });
-                        })
-                        .catch(error => console.error('Error:', error));
-                </script>
+                </div>
             </div>
-            
 
+            <script>
+                // Fetch product data from the backend
+                fetch('/get_products')
+                    .then(response => response.json())
+                    .then(products => {
+                        const productContainer = document.getElementById('tbl_body');
+
+                        // Loop through the products and display them
+                        products.forEach(product => {
+                            const productCard = document.createElement('tr');
+                            // productCard.className = 'col-lg-4 col-md-6 mb-5';
+                            // productCard.innerHTML = `
+                            //                         <td><a href =/show_product?id=${product.product_id}>${product.product_name}</a></td>
+                            //                         <td>${product.product_description}</td>
+                            //                         <td>${product.price}</td>
+                            //                         <td>${product.status}</td>
+                            //                         <td><img height="100px" src="uploads/${product.image}" alt="${product.product_name}"></td>
+                            //                     `;
+
+
+                            if (product.status === "Available") {
+                                // If the product is available, enable the link
+                                productCard.innerHTML = `
+                                <td><a href="/show_product?id=${product.product_id}">${product.product_name}</a></td>
+                                <td>${product.product_description}</td>
+                                <td>${product.price}</td>
+                                <td>${product.status}</td>
+                                <td><img height="100px" src="uploads/${product.image}" alt="${product.product_name}"></td>
+                            `;
+                            } else if (product.status === "Not Available") {
+                                // If the product is not available, disable the link
+                                productCard.innerHTML = `
+                                <td><a style="color:#878787;" disabled>${product.product_name}</a></td>
+                                <td>${product.product_description}</td>
+                                <td>${product.price}</td>
+                                <td>${product.status}</td>
+                                <td><img height="100px" src="uploads/${product.image}" alt="${product.product_name}"></td>
+                            `;
+                            } else {
+                                // If the product is not available, disable the link
+                                // productCard.innerHTML = `
+                                // <td><a style="opacity:60%;" disabled>${product.product_name}</a></td>
+                                // <td>${product.product_description}</td>
+                                // <td>${product.price}</td>
+                                // <td>${product.status}</td>
+                                // <td><img height="100px" src="uploads/${product.image}" alt="${product.product_name}"></td>
+                                // `;
+                            }
+                            productContainer.appendChild(productCard);
+                            productContainer.appendChild(productCard);
+                        });
+                    })
+                    .catch(error => console.error('Error:', error));
+            </script>
         </div>
+
+
     </div>
+</div>
 
-    <!-- Menu End -->
+<!-- Menu End -->
 
-    
+
 <!-- Coffee Shop Cart section start -->
 <div id="overlay"></div>
 
@@ -171,13 +206,13 @@ button:hover {
                         </tr>
                     </thead>
                     <tbody>
-                        <?php if (isset($_SESSION['cart'])) :?>
+                        <?php if (isset($_SESSION['cart'])) : ?>
                             <?php foreach ($_SESSION['cart'] as $item) : ?>
 
-                                <?php 
-                                    $id = $item['base_coffee_id'];
+                                <?php
+                                $id = $item['base_coffee_id'];
 
-                                    $prod= $db->query("SELECT product_id, 
+                                $prod = $db->query("SELECT product_id, 
                                         product_name,
                                         product_description, 
                                         price, 
@@ -195,10 +230,10 @@ button:hover {
                         <?php endif; ?>
                     </tbody>
                 </table>
-                </div>
-                <div class="cart-footer p-2 bg-light border-top">
-                    <button type="submit" id="checkoutBtn" class="btn btn-primary">Checkout</button>
-                </div>
+        </div>
+        <div class="cart-footer p-2 bg-light border-top">
+            <button type="submit" id="checkoutBtn" class="btn btn-primary">Checkout</button>
+        </div>
         </form>
     </div>
 </div>
@@ -228,7 +263,7 @@ button:hover {
 
                     <label id="Brewed" for="brewed" class="category-btn-label">Brewed</label>
                     <input id="brewed" type="radio" name="category" class="category-btn-checkbox" value="Brewed">
-                        
+
                     <label id="Capuccino" for="capuccino" class="category-btn-label">Capuccino</label>
                     <input id="capuccino" type="radio" name="category" class="category-btn-checkbox" value="Capuccino">
 
@@ -250,8 +285,8 @@ button:hover {
                 </div>
                 <div style="overflow:auto;">
                     <div style="float:right;">
-                    <button type="button" id="prevBtn" onclick="nextPrev(-1)">Previous</button>
-                    <button type="button" id="nextBtn" onclick="nextPrev(1)">Next</button>
+                        <button type="button" id="prevBtn" onclick="nextPrev(-1)">Previous</button>
+                        <button type="button" id="nextBtn" onclick="nextPrev(1)">Next</button>
                     </div>
                 </div>
                 <!-- Circles which indicates the steps of the form: -->
@@ -269,26 +304,26 @@ button:hover {
 
 </div>
 
-    <!-- JavaScript Libraries -->
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
-    <script src="lib/easing/easing.min.js"></script>
-    <script src="lib/waypoints/waypoints.min.js"></script>
-    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
-    <script src="lib/tempusdominus/js/moment.min.js"></script>
-    <script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
-    <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+<!-- JavaScript Libraries -->
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+<script src="lib/easing/easing.min.js"></script>
+<script src="lib/waypoints/waypoints.min.js"></script>
+<script src="lib/owlcarousel/owl.carousel.min.js"></script>
+<script src="lib/tempusdominus/js/moment.min.js"></script>
+<script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
+<script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
-     <!-- Template Javascript -->
-    <?php require "js/main.php"; ?>
+<!-- Template Javascript -->
+<?php require "js/main.php"; ?>
 
-    <!-- Contact Javascript File -->
-    <script src="mail/jqBootstrapValidation.min.js"></script>
-    <script src="mail/contact.js"></script>
+<!-- Contact Javascript File -->
+<script src="mail/jqBootstrapValidation.min.js"></script>
+<script src="mail/contact.js"></script>
 
-    <script>
-    document.addEventListener('DOMContentLoaded', function () {
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
         const categoryCheckboxes = document.querySelectorAll('.category-btn-checkbox');
         const baseCoffeeContainer = document.getElementById('base-coffee');
         const ingredientsContainer = document.getElementById('prod_ingredients');
@@ -351,7 +386,7 @@ button:hover {
                     amer.classList.add("selected");
                     $('.category-btn-label').not('#' + this.value).removeClass('selected');
                 }
-                });
+            });
         }
 
         // Event listener for category checkboxes change
@@ -366,37 +401,36 @@ button:hover {
         const baseSizeContainer = document.getElementById('size-con');
 
         sizes.forEach(size => {
-                const label = document.createElement('label');
-                label.textContent = size;
-                label.setAttribute('for', size);
-                label.classList.add('category-btn-label');
-                label.id = size.toLowerCase();;
+            const label = document.createElement('label');
+            label.textContent = size;
+            label.setAttribute('for', size);
+            label.classList.add('category-btn-label');
+            label.id = size.toLowerCase();;
 
-                const input = document.createElement('input');
-                input.type = 'radio';
-                input.name = 'size';
-                input.classList.add('category-btn-checkbox');
-                input.value = size.toLowerCase();
-                input.id = size;
+            const input = document.createElement('input');
+            input.type = 'radio';
+            input.name = 'size';
+            input.classList.add('category-btn-checkbox');
+            input.value = size.toLowerCase();
+            input.id = size;
 
-                const div = document.createElement('div');
-                div.classList.add('btn-group');
-                div.appendChild(label);
-                div.appendChild(input);
+            const div = document.createElement('div');
+            div.classList.add('btn-group');
+            div.appendChild(label);
+            div.appendChild(input);
 
-                baseSizeContainer.appendChild(div);
+            baseSizeContainer.appendChild(div);
 
-                $('input[name=size]').change(function() {
+            $('input[name=size]').change(function() {
                 if ($(this).is(':checked')) {
                     const amer = document.getElementById(this.value);
                     amer.classList.add("selected");
                     $('.category-btn-label').not('#' + this.value).removeClass('selected');
                 }
-                });
-
             });
-    });
 
+        });
+    });
 </script>
 
 
