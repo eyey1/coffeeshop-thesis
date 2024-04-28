@@ -27,14 +27,20 @@ class Authenticator
 
   public static function login($user)
   {
-    $_SESSION['user'] = [
-      'id' => $user['id'],
-      'email' => $user['email'],
-      'position' => $user['position'],
-    ];
+    if (is_array($user) && isset($user['id'], $user['email'], $user['position'])) {
+      $_SESSION['user'] = [
+        'id' => $user['id'],
+        'email' => $user['email'],
+        'position' => $user['position'],
+      ];
 
-    session_regenerate_id();
+      session_regenerate_id();
+    } else {
+      // Handle the case where $user is not an array or is missing required fields
+      // You can log an error, display a message, or perform any other appropriate action here
+    }
   }
+
 
   public static function logout()
   {

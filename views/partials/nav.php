@@ -54,13 +54,14 @@ $coffee_data = $db->query("SELECT * FROM tblcoffeeshop")->get();
                             <a href="/contact" class="nav-link h6">Contact</a>
                         </li> -->
                     <?php endif; ?>
-                    <?php if (isset($_SESSION['user']) && $_SESSION['user']['position'] === 'admin') : ?>
+                    <?php if (isset($_SESSION['user']) && isset($_SESSION['user']['position']) && $_SESSION['user']['position'] === 'admin') : ?>
                         <li class="nav-item">
                             <a href="/admin_dashboard" class="nav-item nav-link h6">Dashboard</a>
                         </li>
                     <?php else : ?>
                         <li></li>
                     <?php endif; ?>
+
                     <?php if ($_SESSION['user'] ?? false) : ?>
                         <li class="nav-item">
                             <form action="/sessions" method="POST">
