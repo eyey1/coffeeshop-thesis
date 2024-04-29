@@ -6,11 +6,13 @@ $router->get('/service', 'service.php');
 $router->get('/menu', 'menu/menu.php');
 $router->post('/menu', 'menu/store.php')->only('auth');
 $router->post('/store_cart', 'menu/store_cart.php')->only('auth');
+$router->post('/remove_cart', 'menu/remove_cart.php')->only('auth');
+$router->post('/update_cart', 'menu/update_cart.php')->only('auth');
 $router->get('/get_products', 'get_products.php');
 $router->get('/show_product', 'product_page.php');
 
 $router->get('/reservation', 'reservation.php')->only('auth');
-$router->get('/testimonial', 'feedback/testimonial.php');
+$router->get('/testimonial', 'feedback/testimonial.php')->only('auth');
 $router->post('/feedback', 'feedback/store.php')->only('auth');
 $router->get('/contact', 'contact.php');
 // $router->get('/notes', 'notes/index.php')->only('auth');

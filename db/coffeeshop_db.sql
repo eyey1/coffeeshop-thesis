@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 21, 2024 at 09:11 AM
--- Server version: 10.4.27-MariaDB
--- PHP Version: 8.1.12
+-- Generation Time: Apr 29, 2024 at 05:46 PM
+-- Server version: 10.4.32-MariaDB
+-- PHP Version: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -95,7 +95,8 @@ INSERT INTO `tblcategory_product` (`categoryProduct_id`, `category`) VALUES
 (3, 'frappe'),
 (4, 'espresso'),
 (5, 'latte'),
-(6, 'cappuccino');
+(6, 'cappuccino'),
+(20, 'milk based');
 
 -- --------------------------------------------------------
 
@@ -166,12 +167,17 @@ CREATE TABLE `tblemployees` (
 --
 
 INSERT INTO `tblemployees` (`employeeID`, `firstname`, `lastname`, `email`, `position`, `hiredate`, `username`, `password`) VALUES
-(2, 'Thomas', 'Gallardo', '', 'barista', '2023-09-12', 'samtim', 'test123'),
-(7, '', '', '', '', '0000-00-00', '', ''),
-(9, '', '', '', '', '0000-00-00', '', ''),
-(12, '', '', '', '', '0000-00-00', '', ''),
-(22, 'Sendo', 'Galang', 'sendo@gmail.com', 'admin', '2024-04-21', 'test', '$2y$10$vd6OH21OY7cDOiYQXIW0zevs7hDYGhmXnjMNP3ONyhO0I2yZNuDva'),
-(23, 'test', 'test', 'test@gmail.com', 'guest', '2024-04-27', 'test', '$2y$10$dfYfuS8LfSpBLH/U2OpltumqdhwNayyijVffHKpl499lPXRM2WPve');
+(1, 'Super', 'Admin', 'superadmin@gmail.com', 'admin', '2024-04-01', 'superadmin', '$2y$10$ExJqrs6/0hYlS7mTyFwbN.ja1XeJAb78OZExDw5UxO2PAk91YL2yu'),
+(34, 'Jan', 'Manuel', 'jan@gmail.com', 'admin', '2024-04-23', 'enrique', '$2y$10$woVQnRr/aNbyJaSU6BxFuu03QDnKz34oqzPzYH6mKLzKNk0ZQBRGa'),
+(35, 'test', 'test3', 'test@gmail.com', 'guest', '2024-04-23', 'testing', '$2y$10$FO9R0sczJKEUWd.AO7Ga8O0UXDHjL2v9UsKGU6l39ASpA7Z4WB85C'),
+(39, 'Juan', 'Luna', 'juan@gmail.com', 'guest', '2024-04-23', 'juan', '$2y$10$uerZ8nU9of.PLLelQqufcec3cz5ubJL.mbCdGGbdFTYfWLx5Y7Cvm'),
+(42, 'JP', 'Olarte', 'jp@gmail.com', 'admin', '2024-04-25', 'jp', '$2y$10$VVzxH5W.aTdBNNse4dzwRe4/iMvJ50hS.8rvsx.lztgH8kBv0S0KG'),
+(44, 'justin', 'japson', 'justin@gmail.com', 'admin', '2024-04-26', 'justin', '$2y$10$IWQQ7taqWigMODDzty9sne727TSQbKysBdNk2i3ygVRIXjcd.8nfO'),
+(48, '123', '123', '123@gmail.com', 'guest', '2024-04-28', '123', '$2y$10$JHUgWklGX0.sXqyQm/cr7uXAYUHZpvy1VRnSqzYd78yFNqNcioNHG'),
+(49, '567', '567', '567@gmail.com', 'guest', '2024-04-28', '567', '$2y$10$Zt6w8iCyIaxxch5/.5FVlOFHq.cD2cRyBLJlIfh3nDpC0ZQMRKVaW'),
+(50, 'asd', 'asd', 'asd@gmail.com', 'guest', '2024-04-28', 'asd', '$2y$10$DXOO2fGt/4aFsZJkJc8PR.uXXD6zag0oPuHQMdB5opRPQeChPCCmm'),
+(51, 'hjk', 'hjk', 'hjk@gmail.com', 'guest', '2024-04-28', 'hjk', '$2y$10$s93SHRL2EXONjTQGQAXOqeuDYz.FaeR5ArsqBiA.qtnsBhmOfTBKi'),
+(52, 'fgh', 'fgh', 'fgh@gmail.com', 'guest', '2024-04-28', 'fgh', '$2y$10$RBhNmLguxOClmfRV767OU.ZOT6QL8jSSpvUkjpHj9wKcMzW4YEIJ2');
 
 -- --------------------------------------------------------
 
@@ -192,13 +198,10 @@ CREATE TABLE `tblfeedback` (
 --
 
 INSERT INTO `tblfeedback` (`feedbackid`, `title`, `feedback_desc`, `feedback_datetime`, `customerid`) VALUES
-(9, 'test', 'testttt', '2024-04-21 01:31:53', 22),
-(10, 'test', 'testtt', '2024-04-21 01:32:32', 22),
-(11, 'test', 'testtt', '2024-04-21 03:14:14', 22),
-(12, 'test', 'testttttt', '2024-04-21 03:14:19', 22),
-(13, 'test', 'testtt', '2024-04-21 03:14:23', 22),
-(14, 'aws', 'aws', '2024-04-21 03:16:16', 23),
-(15, 'aws', 'aws', '2024-04-21 03:16:20', 23);
+(19, 'Good Coffee', 'Coffee served here in only coffee is one of the best', '2024-04-23 14:58:06', 35),
+(21, 'Test Title', 'Test feedback body', '2024-04-26 17:46:22', 39),
+(22, 'Fast Service', 'The service here in only coffee has one of the fastest service in the coffee industry.', '2024-04-26 20:21:17', 42),
+(23, 'Strong coffee', 'Coffee that\'s been served to me is too strong', '2024-04-27 21:06:59', 44);
 
 -- --------------------------------------------------------
 
@@ -219,11 +222,11 @@ CREATE TABLE `tblinventory` (
 --
 
 INSERT INTO `tblinventory` (`inventory_id`, `inventory_item`, `item_type`, `quantity`, `unit`) VALUES
-(3, 'Powdered Sugar', 'Sweetener', 10, 'bags'),
+(3, 'Powdered Sugar', 'Sweetener', 11, 'bags'),
 (4, 'Arrabica Coffee Bean', 'Coffee Bean', 10, 'bags'),
 (5, 'Liberica Coffee Bean', 'Coffee Bean', 10, 'bags'),
 (6, 'Oat Milk', 'Milk', 10, 'Gallons'),
-(7, 'Soy Milk', 'Milk', 10, 'Gallons'),
+(7, 'Soy Milk', 'Milk', 11, 'Gallons'),
 (8, 'Pearls', 'Sinker', 10, 'packs'),
 (9, 'Nata De Coco', 'Sinker', 10, 'packs'),
 (10, 'Small Cups', 'Disposable', 20, 'packs'),
@@ -231,8 +234,10 @@ INSERT INTO `tblinventory` (`inventory_id`, `inventory_item`, `item_type`, `quan
 (12, 'Cream', 'Toppings', 10, 'cans'),
 (13, 'Marshmallows', 'Toppings', 10, 'packs'),
 (14, 'Caramel', 'Flavor', 10, 'bottles'),
-(15, 'Matcha', 'Flavor', 12, 'bottles'),
-(16, 'Oreo', 'Flavor', 12, 'packs');
+(15, 'Matcha', 'Flavor', 0, 'bottle'),
+(16, 'Oreo', 'Flavor', 12, 'pack'),
+(41, '123', 'Coffee Bean', 123, '123'),
+(42, 'Kikiam', 'Sinker', 123, 'boxes');
 
 -- --------------------------------------------------------
 
@@ -253,14 +258,14 @@ CREATE TABLE `tblorderitem` (
 --
 
 INSERT INTO `tblorderitem` (`orderitem_id`, `quantity`, `status`, `orderid`, `productid`) VALUES
-(1, 2, 'active', 1, 17),
-(2, 1, 'active', 1, 7),
-(3, 3, 'active', 1, 21),
-(4, 5, 'completed', 2, 15),
-(5, 2, 'completed', 2, 17),
-(6, 1, 'completed', 5, 16),
-(7, 2, 'completed', 5, 10),
-(8, 2, 'completed', 10, 11);
+(1, 2, 'completed', NULL, 17),
+(2, 1, 'completed', NULL, 7),
+(3, 3, 'active', NULL, 21),
+(4, 5, 'completed', NULL, 15),
+(5, 2, 'completed', NULL, 17),
+(6, 1, 'active', NULL, 16),
+(7, 2, 'active', NULL, 10),
+(8, 2, 'completed', NULL, 11);
 
 -- --------------------------------------------------------
 
@@ -272,35 +277,28 @@ CREATE TABLE `tblorders` (
   `order_id` int(11) NOT NULL,
   `order_type` varchar(255) NOT NULL,
   `order_datetime` datetime NOT NULL DEFAULT current_timestamp(),
+  `quantity` int(11) NOT NULL,
   `base_coffee_id` int(11) NOT NULL,
-  `customer_id` int(11) NOT NULL
+  `customer_id` int(11) NOT NULL,
+  `order_number` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `tblorders`
 --
 
-INSERT INTO `tblorders` (`order_id`, `order_type`, `order_datetime`, `base_coffee_id`, `customer_id`) VALUES
-(1, 'take-out', '2023-11-09 15:26:34', 0, 2),
-(2, 'dine-in', '2023-11-09 15:26:34', 0, 3),
-(5, 'take-out', '2023-11-09 16:43:45', 0, 5),
-(8, 'take-out', '2023-11-09 15:28:03', 0, 2),
-(10, 'dine-in', '2023-11-09 15:28:03', 0, 4),
-(70, 'take-out', '2024-04-20 17:37:28', 11, 9),
-(71, 'take-out', '2024-04-20 17:37:28', 17, 9),
-(72, 'take-out', '2024-04-20 17:38:13', 11, 9),
-(73, 'take-out', '2024-04-20 17:38:13', 16, 9),
-(74, 'take-out', '2024-04-20 18:06:20', 7, 9),
-(75, 'take-out', '2024-04-20 18:07:41', 11, 9),
-(76, 'take-out', '2024-04-20 18:07:41', 11, 9),
-(77, 'take-out', '2024-04-20 18:07:41', 17, 9),
-(78, 'take-out', '2024-04-20 22:53:01', 69, 9),
-(79, 'take-out', '2024-04-20 22:53:16', 69, 9),
-(80, 'take-out', '2024-04-20 22:54:19', 69, 9),
-(81, 'take-out', '2024-04-20 22:54:19', 16, 9),
-(82, 'take-out', '2024-04-20 22:54:19', 16, 9),
-(83, 'take-out', '2024-04-20 22:54:19', 21, 9),
-(84, 'take-out', '2024-04-20 22:54:20', 69, 9);
+INSERT INTO `tblorders` (`order_id`, `order_type`, `order_datetime`, `quantity`, `base_coffee_id`, `customer_id`, `order_number`) VALUES
+(108, 'take-out', '2024-04-29 21:08:28', 1, 11, 34, 101),
+(109, 'take-out', '2024-04-29 21:08:28', 1, 16, 34, 101),
+(110, 'take-out', '2024-04-29 21:08:47', 1, 15, 34, 101),
+(111, 'take-out', '2024-04-29 21:14:59', 1, 7, 34, 102),
+(112, 'take-out', '2024-04-29 21:14:59', 1, 11, 34, 102),
+(113, 'take-out', '2024-04-29 21:15:30', 1, 70, 34, 103),
+(114, 'take-out', '2024-04-29 21:15:30', 1, 17, 34, 103),
+(115, 'take-out', '2024-04-29 22:07:30', 1, 7, 34, 104),
+(116, 'take-out', '2024-04-29 22:07:45', 1, 11, 34, 105),
+(117, 'take-out', '2024-04-29 23:38:58', 1, 7, 34, 106),
+(118, 'take-out', '2024-04-29 23:39:10', 1, 11, 34, 107);
 
 -- --------------------------------------------------------
 
@@ -322,71 +320,71 @@ CREATE TABLE `tblpayment` (
 --
 
 INSERT INTO `tblpayment` (`paymentID`, `order_datetime`, `amountpayed`, `paymenttype`, `customerid`, `orderid`) VALUES
-(2, '2023-11-09 16:39:07', '500.00', 'Cash', 2, 1),
-(7, '2023-11-09 16:39:07', '500.00', 'Cash', 2, 1),
-(9, '2023-11-09 16:37:27', '500.00', 'Cash', 2, 2),
-(11, '2023-11-09 16:38:21', '500.00', 'Cash', 2, 2),
-(76, '2023-11-10 11:26:03', '2500.00', 'Cash', 3, 5),
-(99, '2023-11-10 11:26:03', '550.00', 'Cash', 2, 2),
-(100, '2023-11-10 16:39:07', '500.00', 'Cash', NULL, NULL),
-(101, '2023-11-10 16:39:07', '500.00', 'Cash', NULL, NULL),
-(102, '2023-11-11 16:37:27', '500.00', 'Cash', NULL, NULL),
-(103, '2023-11-11 16:38:21', '500.00', 'Cash', NULL, NULL),
-(104, '2023-11-12 11:26:03', '2500.00', 'Cash', NULL, NULL),
-(105, '2023-11-12 11:26:03', '550.00', 'Cash', NULL, NULL),
-(106, '2023-11-13 16:39:07', '500.00', 'Cash', NULL, NULL),
-(107, '2023-11-13 16:39:07', '500.00', 'Cash', NULL, NULL),
-(108, '2023-11-14 16:37:27', '500.00', 'Cash', NULL, NULL),
-(109, '2023-11-14 16:38:21', '500.00', 'Cash', NULL, NULL),
-(110, '2023-11-15 11:26:03', '2500.00', 'Cash', NULL, NULL),
-(111, '2023-11-15 11:26:03', '550.00', 'Cash', NULL, NULL),
-(112, '2023-10-01 11:26:03', '550.00', 'Cash', NULL, NULL),
-(113, '2023-10-01 11:26:03', '550.00', 'Cash', NULL, NULL),
-(114, '2023-10-01 11:26:03', '550.00', 'Cash', NULL, NULL),
-(115, '2023-10-02 11:26:03', '550.00', 'Cash', NULL, NULL),
-(116, '2023-10-02 11:26:03', '550.00', 'Cash', NULL, NULL),
-(117, '2023-10-02 11:26:03', '550.00', 'Cash', NULL, NULL),
-(118, '2023-10-03 11:26:03', '550.00', 'Cash', NULL, NULL),
-(119, '2023-10-03 11:26:03', '550.00', 'Cash', NULL, NULL),
-(120, '2023-10-04 11:26:03', '550.00', 'Cash', NULL, NULL),
-(121, '2023-10-04 11:26:03', '550.00', 'Cash', NULL, NULL),
-(122, '2023-10-04 11:26:03', '550.00', 'Cash', NULL, NULL),
-(123, '2023-09-01 11:26:03', '550.00', 'Cash', NULL, NULL),
-(124, '2023-09-01 11:26:03', '550.00', 'Cash', NULL, NULL),
-(125, '2023-09-01 11:26:03', '550.00', 'Cash', NULL, NULL),
-(126, '2023-09-02 11:26:03', '550.00', 'Cash', NULL, NULL),
-(127, '2023-09-02 11:26:03', '550.00', 'Cash', NULL, NULL),
-(128, '2023-09-02 11:26:03', '550.00', 'Cash', NULL, NULL),
-(129, '2023-09-03 11:26:03', '550.00', 'Cash', NULL, NULL),
-(130, '2023-09-03 11:26:03', '550.00', 'Cash', NULL, NULL),
-(131, '2023-09-04 11:26:03', '550.00', 'Cash', NULL, NULL),
-(132, '2023-09-04 11:26:03', '550.00', 'Cash', NULL, NULL),
-(133, '2023-09-05 11:26:03', '550.00', 'Cash', NULL, NULL),
-(134, '2023-08-01 11:26:03', '550.00', 'Cash', NULL, NULL),
-(135, '2023-08-01 11:26:03', '550.00', 'Cash', NULL, NULL),
-(136, '2023-08-01 11:26:03', '550.00', 'Cash', NULL, NULL),
-(137, '2023-08-02 11:26:03', '550.00', 'Cash', NULL, NULL),
-(138, '2023-08-02 11:26:03', '550.00', 'Cash', NULL, NULL),
-(139, '2023-08-02 11:26:03', '550.00', 'Cash', NULL, NULL),
-(140, '2023-08-03 11:26:03', '550.00', 'Cash', NULL, NULL),
-(141, '2023-08-03 11:26:03', '550.00', 'Cash', NULL, NULL),
-(142, '2023-08-04 11:26:03', '550.00', 'Cash', NULL, NULL),
-(143, '2023-08-04 11:26:03', '550.00', 'Cash', NULL, NULL),
-(144, '2023-08-05 11:26:03', '550.00', 'Cash', NULL, NULL),
-(145, '2023-07-01 11:26:03', '550.00', 'Cash', NULL, NULL),
-(146, '2023-07-01 11:26:03', '550.00', 'Cash', NULL, NULL),
-(147, '2023-07-01 11:26:03', '550.00', 'Cash', NULL, NULL),
-(148, '2023-07-02 11:26:03', '550.00', 'Cash', NULL, NULL),
-(149, '2023-07-02 11:26:03', '550.00', 'Cash', NULL, NULL),
-(150, '2023-07-02 11:26:03', '550.00', 'Cash', NULL, NULL),
-(151, '2023-07-03 11:26:03', '550.00', 'Cash', NULL, NULL),
-(152, '2023-07-03 11:26:03', '550.00', 'Cash', NULL, NULL),
-(153, '2023-07-04 11:26:03', '550.00', 'Cash', NULL, NULL),
-(154, '2023-07-04 11:26:03', '550.00', 'Cash', NULL, NULL),
-(155, '2023-07-05 11:26:03', '550.00', 'Cash', NULL, NULL),
-(156, '2025-12-25 04:29:00', '10.00', 'Card', 2, 2),
-(159, '2023-11-16 22:36:42', '130.00', 'Card', 3, 8),
-(160, '2023-11-16 22:36:42', '111.11', 'Card', 2, 8);
+(2, '2023-11-09 16:39:07', 500.00, 'Cash', NULL, NULL),
+(7, '2023-11-09 16:39:07', 500.00, 'Cash', NULL, NULL),
+(9, '2023-11-09 16:37:27', 500.00, 'Cash', NULL, NULL),
+(11, '2023-11-09 16:38:21', 500.00, 'Cash', NULL, NULL),
+(76, '2023-11-10 11:26:03', 2500.00, 'Cash', NULL, NULL),
+(99, '2023-11-10 11:26:03', 550.00, 'Cash', NULL, NULL),
+(100, '2023-11-10 16:39:07', 500.00, 'Cash', NULL, NULL),
+(101, '2023-11-10 16:39:07', 500.00, 'Cash', NULL, NULL),
+(102, '2023-11-11 16:37:27', 500.00, 'Cash', NULL, NULL),
+(103, '2023-11-11 16:38:21', 500.00, 'Cash', NULL, NULL),
+(104, '2023-11-12 11:26:03', 2500.00, 'Cash', NULL, NULL),
+(105, '2023-11-12 11:26:03', 550.00, 'Cash', NULL, NULL),
+(106, '2023-11-13 16:39:07', 500.00, 'Cash', NULL, NULL),
+(107, '2023-11-13 16:39:07', 500.00, 'Cash', NULL, NULL),
+(108, '2023-11-14 16:37:27', 500.00, 'Cash', NULL, NULL),
+(109, '2023-11-14 16:38:21', 500.00, 'Cash', NULL, NULL),
+(110, '2023-11-15 11:26:03', 2500.00, 'Cash', NULL, NULL),
+(111, '2023-11-15 11:26:03', 550.00, 'Cash', NULL, NULL),
+(112, '2023-10-01 11:26:03', 550.00, 'Cash', NULL, NULL),
+(113, '2023-10-01 11:26:03', 550.00, 'Cash', NULL, NULL),
+(114, '2023-10-01 11:26:03', 550.00, 'Cash', NULL, NULL),
+(115, '2023-10-02 11:26:03', 550.00, 'Cash', NULL, NULL),
+(116, '2023-10-02 11:26:03', 550.00, 'Cash', NULL, NULL),
+(117, '2023-10-02 11:26:03', 550.00, 'Cash', NULL, NULL),
+(118, '2023-10-03 11:26:03', 550.00, 'Cash', NULL, NULL),
+(119, '2023-10-03 11:26:03', 550.00, 'Cash', NULL, NULL),
+(120, '2023-10-04 11:26:03', 550.00, 'Cash', NULL, NULL),
+(121, '2023-10-04 11:26:03', 550.00, 'Cash', NULL, NULL),
+(122, '2023-10-04 11:26:03', 550.00, 'Cash', NULL, NULL),
+(123, '2023-09-01 11:26:03', 550.00, 'Cash', NULL, NULL),
+(124, '2023-09-01 11:26:03', 550.00, 'Cash', NULL, NULL),
+(125, '2023-09-01 11:26:03', 550.00, 'Cash', NULL, NULL),
+(126, '2023-09-02 11:26:03', 550.00, 'Cash', NULL, NULL),
+(127, '2023-09-02 11:26:03', 550.00, 'Cash', NULL, NULL),
+(128, '2023-09-02 11:26:03', 550.00, 'Cash', NULL, NULL),
+(129, '2023-09-03 11:26:03', 550.00, 'Cash', NULL, NULL),
+(130, '2023-09-03 11:26:03', 550.00, 'Cash', NULL, NULL),
+(131, '2023-09-04 11:26:03', 550.00, 'Cash', NULL, NULL),
+(132, '2023-09-04 11:26:03', 550.00, 'Cash', NULL, NULL),
+(133, '2023-09-05 11:26:03', 550.00, 'Cash', NULL, NULL),
+(134, '2023-08-01 11:26:03', 550.00, 'Cash', NULL, NULL),
+(135, '2023-08-01 11:26:03', 550.00, 'Cash', NULL, NULL),
+(136, '2023-08-01 11:26:03', 550.00, 'Cash', NULL, NULL),
+(137, '2023-08-02 11:26:03', 550.00, 'Cash', NULL, NULL),
+(138, '2023-08-02 11:26:03', 550.00, 'Cash', NULL, NULL),
+(139, '2023-08-02 11:26:03', 550.00, 'Cash', NULL, NULL),
+(140, '2023-08-03 11:26:03', 550.00, 'Cash', NULL, NULL),
+(141, '2023-08-03 11:26:03', 550.00, 'Cash', NULL, NULL),
+(142, '2023-08-04 11:26:03', 550.00, 'Cash', NULL, NULL),
+(143, '2023-08-04 11:26:03', 550.00, 'Cash', NULL, NULL),
+(144, '2023-08-05 11:26:03', 550.00, 'Cash', NULL, NULL),
+(145, '2023-07-01 11:26:03', 550.00, 'Cash', NULL, NULL),
+(146, '2023-07-01 11:26:03', 550.00, 'Cash', NULL, NULL),
+(147, '2023-07-01 11:26:03', 550.00, 'Cash', NULL, NULL),
+(148, '2023-07-02 11:26:03', 550.00, 'Cash', NULL, NULL),
+(149, '2023-07-02 11:26:03', 550.00, 'Cash', NULL, NULL),
+(150, '2023-07-02 11:26:03', 550.00, 'Cash', NULL, NULL),
+(151, '2023-07-03 11:26:03', 550.00, 'Cash', NULL, NULL),
+(152, '2023-07-03 11:26:03', 550.00, 'Cash', NULL, NULL),
+(153, '2023-07-04 11:26:03', 550.00, 'Cash', NULL, NULL),
+(154, '2023-07-04 11:26:03', 550.00, 'Cash', NULL, NULL),
+(155, '2023-07-05 11:26:03', 550.00, 'Cash', NULL, NULL),
+(156, '2025-12-25 04:29:00', 10.00, 'Card', NULL, NULL),
+(159, '2023-11-16 22:36:42', 130.00, 'Card', NULL, NULL),
+(160, '2023-11-16 22:36:42', 111.11, 'Card', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -409,14 +407,14 @@ CREATE TABLE `tblproducts` (
 --
 
 INSERT INTO `tblproducts` (`product_id`, `product_name`, `product_description`, `price`, `image`, `status`, `category`) VALUES
-(7, 'Salted Caramel Cold Breww', 'a salted caramel coffee that is brewed colddss', '130.00', 'ss.jpg', NULL, 'brewed'),
-(10, 'Vanilla Cream Frappe', 'A coffee that is frapped with vanilla cream', '200.00', NULL, NULL, 'frappe'),
-(11, 'Iced Americano', 'A coffee that is americanized with ice', '100.00', NULL, NULL, 'frappe'),
-(15, 'Iced White Chocolate mocha', 'A white chocolate flavored coffee with ice and mocha', '200.00', NULL, NULL, 'espresso'),
-(16, 'Espresso Machiato', 'A expressed coffee with macchiato', '200.00', NULL, NULL, 'espresso'),
-(17, 'Iced caffe latte', 'a coffee with ice and latted', '130.00', NULL, NULL, 'latte'),
-(21, 'Iced Special Cappuccinoo', 'a coffee with ice and cappucinized but its special', '130.00', 'ss.jpg', NULL, 'cappuccino'),
-(69, 'dawd', 'awdawdawd', '1111.00', '1x1 (Small).jpg', NULL, 'latte');
+(7, 'Salted Caramel Cold Breww', 'a salted caramel coffee that is brewed colddss', 130.00, 'coffee-3727673_640.jpg', 'Available', 'brewed'),
+(10, 'Vanilla Cream Frappe', 'A coffee that is frapped with vanilla cream', 200.00, 'stock-of-mix-a-cup-coffee-latte-more-motive-top-view-foodgraphy-generative-ai-photo.jpg', 'Not Available', 'frappe'),
+(11, 'Iced Americano', 'A coffee that is americanized with ice', 100.00, 'stock-of-mix-a-cup-coffee-latte-more-motive-top-view-foodgraphy-generative-ai-photo.jpg', 'Available', 'frappe'),
+(15, 'Iced White Chocolate mocha', 'A white chocolate flavored coffee with ice and mocha', 200.00, 'stock-of-mix-a-cup-coffee-latte-more-motive-top-view-foodgraphy-generative-ai-photo.jpg', 'Available', 'espresso'),
+(16, 'Espresso Machiato', 'A expressed coffee with macchiato', 200.00, 'stock-of-mix-a-cup-coffee-latte-more-motive-top-view-foodgraphy-generative-ai-photo.jpg', 'Available', 'espresso'),
+(17, 'Iced caffe latte', 'a coffee with ice and latted', 130.00, 'stock-of-mix-a-cup-coffee-latte-more-motive-top-view-foodgraphy-generative-ai-photo.jpg', 'Available', 'latte'),
+(21, 'Iced Special Cappuccinoo', 'a coffee with ice and cappucinized but its special', 130.00, 'stock-of-mix-a-cup-coffee-latte-more-motive-top-view-foodgraphy-generative-ai-photo.jpg', 'Available', 'cappuccino'),
+(70, 'Hot milk', 'It is just milk that is hot', 120.01, 'coffee-3727673_640.jpg', 'Available', 'milk based');
 
 -- --------------------------------------------------------
 
@@ -429,6 +427,26 @@ CREATE TABLE `tblproducts_inventory` (
   `products_id` int(11) NOT NULL,
   `inventory_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `tblproducts_inventory`
+--
+
+INSERT INTO `tblproducts_inventory` (`productsInventory_id`, `products_id`, `inventory_id`) VALUES
+(113, 10, 15),
+(115, 11, 14),
+(116, 11, 4),
+(117, 15, 5),
+(118, 15, 14),
+(119, 16, 14),
+(120, 16, 4),
+(121, 16, 3),
+(122, 17, 5),
+(123, 21, 14),
+(124, 21, 5),
+(125, 70, 7),
+(126, 7, 42),
+(127, 7, 41);
 
 -- --------------------------------------------------------
 
@@ -451,8 +469,8 @@ CREATE TABLE `tblpromo` (
 --
 
 INSERT INTO `tblpromo` (`promoid`, `promoname`, `promodesc`, `promocode`, `value`, `startdate`, `enddate`) VALUES
-(1, '50% off', 'minus 50% off purchases', 'SINKWENTY', '0.50', '2024-01-01', '2024-01-31'),
-(2, 'Free Upsize', 'free upsize of minimum spent of 500 php', 'FREEUP', '0.00', '2024-02-11', '2024-02-17');
+(1, '50% off', 'minus 50% off purchases', 'SINKWENTY', 0.50, '2024-01-01', '2024-01-31'),
+(2, 'Free Upsize', 'free upsize of minimum spent of 500 php', 'FREEUP', 0.00, '2024-02-11', '2024-02-17');
 
 -- --------------------------------------------------------
 
@@ -502,90 +520,49 @@ CREATE TABLE `tbluserlogs` (
 --
 
 INSERT INTO `tbluserlogs` (`logid`, `log_datetime`, `loginfo`, `employeeid`) VALUES
-(1, '2024-01-11 18:17:02', 'testtest has logged in', 12),
-(2, '2024-01-11 18:01:09', 'testtest has logged in', 12),
-(3, '2024-01-11 18:21:33', 'testtest has logged in', 12),
-(4, '2024-01-12 01:31:21', 'testtest has logged in', 12),
-(5, '2024-01-12 01:32:07', 'samtim has logged in', 2),
-(6, '2024-01-12 01:32:18', 'enrik has logged in', 7),
-(7, '2024-01-12 01:40:38', 'test has logged in.', 9),
-(8, '2024-01-12 01:43:24', 'testtest has logged in.', 12),
-(9, '2024-01-12 01:44:41', 'testtest has logged out.', 12),
-(10, '2024-01-12 01:45:04', 'enrik has logged in.', 7),
-(11, '2024-01-12 01:45:08', 'enrik has logged out.', 7),
-(12, '2024-01-12 01:46:39', 'testtest has logged in.', 12),
-(13, '2024-01-12 01:48:15', 'testtest has edited coffeeshop information.', 12),
-(14, '2024-01-12 02:08:18', 'testtest has added a new product.', 12),
-(15, '2024-01-12 02:08:28', 'testtest has edited a product.', 12),
-(16, '2024-01-12 02:08:37', 'testtest has inserted ingredients for a product.', 12),
-(17, '2024-01-12 02:08:41', 'testtest has reset a product ingredients.', 12),
-(18, '2024-01-12 02:09:05', 'testtest has added a new promo.', 12),
-(19, '2024-01-12 02:09:12', 'testtest has edited a promo.', 12),
-(20, '2024-01-12 02:09:15', 'testtest has deleted a promo.', 12),
-(21, '2024-01-12 02:09:21', 'testtest has added a new product category.', 12),
-(22, '2024-01-12 02:09:27', 'testtest has edited a product category.', 12),
-(23, '2024-01-12 02:09:31', 'testtest has deleted a product category.', 12),
-(24, '2024-01-12 09:51:55', 'testtest has added a new employee.', 12),
-(25, '2024-01-12 09:52:14', 'testtest has edited an employee information.', 12),
-(26, '2024-01-12 09:53:17', 'testtest has added a new employee.', 12),
-(27, '2024-01-12 09:53:29', 'testtest has edited an employee information.', 12),
-(28, '2024-01-12 09:53:36', 'testtest has deleted a employee.', 12),
-(29, '2024-01-12 09:59:23', 'testtest has archived an order.', 12),
-(30, '2024-01-12 09:59:26', 'testtest has unarchived an order.', 12),
-(31, '2024-01-12 09:59:27', 'testtest has completed an order.', 12),
-(32, '2024-01-12 10:07:34', 'testtest has added a new inventory item.', 12),
-(33, '2024-01-12 10:07:39', 'testtest has edited an inventory item.', 12),
-(34, '2024-01-12 10:07:42', 'testtest has deleted an inventory item.', 12),
-(35, '2024-01-12 10:07:50', 'testtest has updated all inventory quantity.', 12),
-(50, '2024-01-12 10:08:01', 'testtest has deleted an inventory category.', 12),
-(51, '2024-01-12 10:08:06', 'testtest has added a new inventory category.', 12),
-(52, '2024-01-12 10:08:09', 'testtest has edited an inventory category.', 12),
-(53, '2024-01-12 10:08:13', 'testtest has deleted an inventory category.', 12),
-(54, '2024-01-12 10:10:37', 'testtest has updated all inventory quantity.', 12),
-(55, '2024-01-27 15:03:33', 'testtest has logged out.', 12),
-(56, '2024-01-27 15:05:31', 'testtest has logged in.', 12),
-(57, '2024-01-27 15:06:07', 'testtest has updated all inventory quantity.', 12),
-(58, '2024-01-27 15:06:30', 'testtest has updated all inventory quantity.', 12),
-(59, '2024-01-27 15:06:39', 'testtest has edited an inventory item.', 12),
-(60, '2024-01-27 15:08:05', 'testtest has added a new inventory category.', 12),
-(61, '2024-01-27 15:08:16', 'testtest has deleted an inventory category.', 12),
-(62, '2024-01-27 15:31:39', 'testtest has completed an order.', 12),
-(63, '2024-01-27 15:31:43', 'testtest has completed an order.', 12),
-(64, '2024-01-27 15:38:21', 'testtest has inserted ingredients for a product.', 12),
-(65, '2024-01-27 15:38:21', 'testtest has inserted ingredients for a product.', 12),
-(66, '2024-01-27 15:38:21', 'testtest has inserted ingredients for a product.', 12),
-(67, '2024-01-27 15:38:21', 'testtest has inserted ingredients for a product.', 12),
-(68, '2024-01-27 15:38:21', 'testtest has inserted ingredients for a product.', 12),
-(69, '2024-01-27 15:38:52', 'testtest has reset a product ingredients.', 12),
-(70, '2024-01-27 15:39:04', 'testtest has deleted a product.', 12),
-(71, '2024-01-27 17:25:12', 'testtest has logged out.', 12),
-(72, '2024-01-27 17:26:14', 'testtest has logged in.', 12),
-(73, '2024-01-27 17:30:36', 'testtest has archived an order.', 12),
-(74, '2024-01-27 17:30:45', 'testtest has unarchived an order.', 12),
-(75, '2024-01-27 17:30:51', 'testtest has unarchived an order.', 12),
-(76, '2024-01-27 17:31:01', 'testtest has completed an order.', 12),
-(77, '2024-01-27 17:33:17', 'testtest has added a new inventory category.', 12),
-(78, '2024-01-27 17:33:26', 'testtest has deleted an inventory category.', 12),
-(79, '2024-01-27 17:33:58', 'testtest has updated all inventory quantity.', 12),
-(80, '2024-01-27 17:34:05', 'testtest has updated all inventory quantity.', 12),
-(81, '2024-01-27 17:39:55', 'testtest has logged out.', 12),
-(82, '2024-01-27 17:40:59', 'samtim has logged in.', 2),
-(83, '2024-01-27 17:41:04', 'samtim has logged out.', 2),
-(84, '2024-01-27 17:41:23', 'samtim has logged in.', 2),
-(85, '2024-01-27 17:41:46', 'samtim has logged out.', 2),
-(86, '2024-01-27 17:41:57', 'test has logged in.', 9),
-(87, '2024-01-27 17:42:02', 'test has logged out.', 9),
-(88, '2024-01-27 17:42:38', 'testtest has logged in.', 12),
-(89, '2024-01-27 17:42:50', 'testtest has logged out.', 12),
-(90, '2024-01-30 11:22:37', 'testtest has logged in.', 12),
-(91, '2024-01-30 12:13:44', 'testtest has logged out.', 12),
-(92, '2024-01-30 12:14:01', 'testtest has logged in.', 12),
-(93, '2024-01-30 19:19:58', 'testtest has logged in.', 12),
-(94, '2024-01-30 19:20:26', 'testtest has added a new inventory item.', 12),
-(95, '2024-01-30 19:20:32', 'testtest has deleted an inventory item.', 12),
-(96, '2024-01-30 19:20:35', 'testtest has deleted an inventory item.', 12),
-(97, '2024-01-30 19:38:43', 'testtest has reset a product ingredients.', 12),
-(98, '2024-01-30 19:38:43', 'testtest has deleted a product.', 12);
+(154, '2024-04-23 23:04:19', 'jan@gmail.com has edited an employee information.', 34),
+(155, '2024-04-23 23:12:50', 'jan@gmail.com has added a new employee.', 34),
+(156, '2024-04-23 23:13:14', 'jan@gmail.com has edited an employee information.', 34),
+(157, '2024-04-23 23:14:38', 'jan@gmail.com has edited an employee information.', 34),
+(158, '2024-04-23 23:15:08', 'jan@gmail.com has added a new employee.', 34),
+(159, '2024-04-23 23:15:17', 'jan@gmail.com has deleted a employee.', 34),
+(160, '2024-04-23 23:15:19', 'jan@gmail.com has deleted a employee.', 34),
+(161, '2024-04-24 16:05:37', 'jan@gmail.com has added a new employee.', 34),
+(162, '2024-04-24 16:05:47', 'jan@gmail.com has edited an employee information.', 34),
+(163, '2024-04-24 16:05:51', 'jan@gmail.com has edited an employee information.', 34),
+(164, '2024-04-24 16:06:07', 'jan@gmail.com has edited an employee information.', 34),
+(165, '2024-04-24 16:06:16', 'jan@gmail.com has edited an employee information.', 34),
+(166, '2024-04-24 16:06:25', 'jan@gmail.com has edited an employee information.', 34),
+(167, '2024-04-24 16:06:32', 'jan@gmail.com has deleted a employee.', 34),
+(168, '2024-04-25 14:06:17', 'jan@gmail.com has added a new employee.', 34),
+(169, '2024-04-25 14:06:24', 'jan@gmail.com has edited an employee information.', 34),
+(170, '2024-04-25 14:06:31', 'jan@gmail.com has edited an employee information.', 34),
+(171, '2024-04-25 14:06:35', 'jan@gmail.com has deleted a employee.', 34),
+(172, '2024-04-25 14:15:14', 'jan@gmail.com has deleted a employee.', 34),
+(173, '2024-04-25 14:19:25', 'jan@gmail.com has edited an employee information.', 34),
+(174, '2024-04-25 14:19:33', 'jan@gmail.com has edited an employee information.', 34),
+(175, '2024-04-25 14:22:41', 'jan@gmail.com has added a new employee.', 34),
+(176, '2024-04-25 14:23:45', 'jan@gmail.com has added a new employee.', 34),
+(177, '2024-04-25 14:24:35', 'jan@gmail.com has edited an employee information.', 34),
+(178, '2024-04-25 14:49:14', 'jan@gmail.com has edited an employee information.', 34),
+(179, '2024-04-25 23:32:37', 'jan@gmail.com has edited an employee information.', 34),
+(180, '2024-04-26 19:41:27', 'jan@gmail.com has edited an employee information.', 34),
+(181, '2024-04-26 19:41:40', 'jan@gmail.com has edited an employee information.', 34),
+(182, '2024-04-26 19:42:01', 'justin@gmail.com has edited an employee information.', 44),
+(183, '2024-04-26 23:15:22', 'jp@gmail.com has edited an employee information.', 42),
+(184, '2024-04-26 23:17:23', 'jp@gmail.com has edited an employee information.', 42),
+(185, '2024-04-26 23:17:27', 'jp@gmail.com has edited an employee information.', 42),
+(186, '2024-04-26 23:17:44', 'jp@gmail.com has added a new employee.', 42),
+(187, '2024-04-26 23:17:50', 'jp@gmail.com has deleted a employee.', 42),
+(188, '2024-04-26 23:20:28', 'jp@gmail.com has added a new employee.', 42),
+(189, '2024-04-26 23:25:39', 'jp@gmail.com has edited an employee information.', 42),
+(190, '2024-04-26 23:28:34', 'jp@gmail.com has edited an employee information.', 42),
+(191, '2024-04-26 23:28:52', 'jp@gmail.com has edited an employee information.', 42),
+(192, '2024-04-26 23:31:04', 'jp@gmail.com has added a new employee.', 42),
+(193, '2024-04-26 23:31:14', 'jp@gmail.com has edited an employee information.', 42),
+(194, '2024-04-26 23:31:23', 'jp@gmail.com has edited an employee information.', 42),
+(195, '2024-04-26 23:31:28', 'jp@gmail.com has deleted a employee.', 42),
+(196, '2024-04-26 23:31:32', 'jp@gmail.com has deleted a employee.', 42);
 
 -- --------------------------------------------------------
 
@@ -742,13 +719,13 @@ ALTER TABLE `tblcartitem`
 -- AUTO_INCREMENT for table `tblcategory_inventory`
 --
 ALTER TABLE `tblcategory_inventory`
-  MODIFY `categoryInventory_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `categoryInventory_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
 -- AUTO_INCREMENT for table `tblcategory_product`
 --
 ALTER TABLE `tblcategory_product`
-  MODIFY `categoryProduct_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `categoryProduct_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `tblcoffeeshop`
@@ -766,19 +743,19 @@ ALTER TABLE `tblcustomers`
 -- AUTO_INCREMENT for table `tblemployees`
 --
 ALTER TABLE `tblemployees`
-  MODIFY `employeeID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `employeeID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
 
 --
 -- AUTO_INCREMENT for table `tblfeedback`
 --
 ALTER TABLE `tblfeedback`
-  MODIFY `feedbackid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `feedbackid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `tblinventory`
 --
 ALTER TABLE `tblinventory`
-  MODIFY `inventory_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+  MODIFY `inventory_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 
 --
 -- AUTO_INCREMENT for table `tblorderitem`
@@ -790,7 +767,7 @@ ALTER TABLE `tblorderitem`
 -- AUTO_INCREMENT for table `tblorders`
 --
 ALTER TABLE `tblorders`
-  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=85;
+  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=119;
 
 --
 -- AUTO_INCREMENT for table `tblpayment`
@@ -802,19 +779,19 @@ ALTER TABLE `tblpayment`
 -- AUTO_INCREMENT for table `tblproducts`
 --
 ALTER TABLE `tblproducts`
-  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=70;
+  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=73;
 
 --
 -- AUTO_INCREMENT for table `tblproducts_inventory`
 --
 ALTER TABLE `tblproducts_inventory`
-  MODIFY `productsInventory_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=108;
+  MODIFY `productsInventory_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=128;
 
 --
 -- AUTO_INCREMENT for table `tblpromo`
 --
 ALTER TABLE `tblpromo`
-  MODIFY `promoid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `promoid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `tbluser`
@@ -826,7 +803,7 @@ ALTER TABLE `tbluser`
 -- AUTO_INCREMENT for table `tbluserlogs`
 --
 ALTER TABLE `tbluserlogs`
-  MODIFY `logid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=99;
+  MODIFY `logid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=197;
 
 --
 -- AUTO_INCREMENT for table `testimonials`

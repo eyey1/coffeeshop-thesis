@@ -1,6 +1,14 @@
 <?php require base_path('views/partials/head.php') ?>
 <?php require base_path('views/partials/nav.php') ?>
 
+<script>
+    function loginFail() {
+        swal("Login was unsuccessful. Please try again.", {
+            icon: "error",
+        });
+    };
+</script>
+
 <!-- Page Header Start -->
 <div class="container-fluid page-header mb-5 position-relative overlay-bottom">
     <div class="d-flex flex-column align-items-center justify-content-center pt-0 pt-lg-5" style="min-height: 200px">
@@ -35,12 +43,18 @@
                                 <input style="color: white;" value="<?= old('email') ?>" name="email" type="email" class="form-control bg-transparent border-primary p-4" placeholder="Email" required="required" />
                             </div>
                             <?php if (isset($errors['email'])) : ?>
+                                <script>
+                                    loginFail();
+                                </script>
                                 <p class="text-red-500 text-sm mt-2"><?= $errors['email'] ?></p>
                             <?php endif; ?>
                             <div class="form-group">
                                 <input style="color: white;" name="password" type="password" class="form-control bg-transparent border-primary p-4" placeholder="Password" required="required" />
                             </div>
                             <?php if (isset($errors['password'])) : ?>
+                                <script>
+                                    loginFail();
+                                </script>
                                 <p class="text-red-500 text-sm mt-2"><?= $errors['password'] ?></p>
                             <?php endif; ?>
                             <div>

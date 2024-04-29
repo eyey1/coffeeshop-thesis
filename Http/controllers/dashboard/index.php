@@ -32,7 +32,6 @@ $orderTasksData = $db->query($sqlOrderTasks)->get();
 $sqlMonthlySales = "SELECT DATE_FORMAT(order_datetime, '%Y-%m') AS saleMonth, SUM(amountpayed) AS monthlySales FROM tblpayment GROUP BY DATE_FORMAT(order_datetime, '%Y-%m')";
 $monthlySalesData = $db->query($sqlMonthlySales)->get();
 
-
 view('dashboard/index.view.php', [
     'orderData' => $orderData,
     'visitorData' => $visitorData,

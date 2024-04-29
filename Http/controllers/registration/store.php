@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 use Core\App;
 use Core\Database;
@@ -17,42 +17,54 @@ $password = $_POST['password'];
 
 $errors = [];
 
-  if (! Validator::email($email)) {
-    $errors['email'] = "Please provide a valid email.";
-  }
+if (!Validator::email($email)) {
+  $errors['email'] = "Please provide a valid email.";
+}
 
-  if (! Validator::string($password, 7 , 255)) {
-    $errors['password'] = "Please provide a password of atleast 7 characters.";
-  }
+if (!Validator::string($password, 7, 255)) {
+  $errors['password'] = "Please provide a password of atleast 7 characters.";
+}
 
-  if (! empty($errors)) {
-    return view('registration/create.view.php', [
-      'heading' => 'Register',
-      'errors' => $errors,
-    ]);
-  }
+$checkUsername = $db->query("SELECT * FROM tblemployees where 1")->get();
 
-  $user = $db->query("SELECT * FROM tblemployees where email = :email", ['email' => $email])->find();
+
+foreach ($checkUsername as $usernameExist) {
+  if ($usernameExist['username'] == $username) {
+    $errors["username"] = "The username '$username' has already been taken.";
+  }
+  if ($usernameExist['email'] == $email) {
+    $errors["email"] = "An account with this email '$email' is currently existing.";
+  }
+}
+
+
+if (!empty($errors)) {
+  return view('registration/create.view.php', [
+    'heading' => 'Register',
+    'errors' => $errors,
+  ]);
+}
+
+$user = $db->query("SELECT * FROM tblemployees where email = :email", ['email' => $email])->find();
 
 
 if ($user) {
   header('location: /');
   die();
-  
 } else {
 
   $db->query("INSERT INTO tblemployees(firstname, lastname, email, username, password) VALUES(:firstname, :lastname, :email, :username, :password)", [
-    'firstname'=> $first_name,
-    'lastname'=> $last_name,
-    'email'=> $email,
-    'username'=> $username,
+    'firstname' => $first_name,
+    'lastname' => $last_name,
+    'email' => $email,
+    'username' => $username,
     'password' => password_hash($password, PASSWORD_BCRYPT),
   ]);
 
+
+  $_SESSION['signupSuccess'] = true;
   Authenticator::login($user);
 
   header('location: /register');
   die();
 }
-
-?>

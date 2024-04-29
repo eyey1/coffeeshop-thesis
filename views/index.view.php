@@ -1,6 +1,37 @@
 <?php require 'partials/head.php'; ?>
 <?php require 'partials/nav.php'; ?>
 
+<?php
+// Assuming you have a session variable set after a successful login
+if (isset($_SESSION['signupSuccess']) && $_SESSION['signupSuccess'] === true) {
+    echo '
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+        <script>
+            window.onload = function() {
+                swal("Sign up was successful!", {
+                    icon: "success",
+                });
+            };
+        </script>
+        ';
+    // Reset the session variable to prevent the alert from showing up again on page reload
+    $_SESSION['signupSuccess'] = false;
+} else if (isset($_SESSION['loginSuccess']) && $_SESSION['loginSuccess'] === true) {
+    echo '
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+        <script>
+            window.onload = function() {
+                swal("Login successful!", {
+                    icon: "success",
+                });
+            };
+        </script>
+        ';
+    // Reset the session variable to prevent the alert from showing up again on page reload
+    $_SESSION['loginSuccess'] = false;
+}
+?>
+
 <!-- Carousel Start -->
 <div class="container-fluid p-0 mb-5">
     <div id="blog-carousel" class="carousel slide overlay-bottom" data-ride="carousel">

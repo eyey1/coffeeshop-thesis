@@ -2,7 +2,28 @@
 <?php require 'partials/nav.php'; ?>
 <link href="css/chathead.css" rel="stylesheet">
 <link href="css/table.css" rel="stylesheet">
-
+<?php
+// Check if the session variable for the order number is set
+if (isset($_SESSION['orderSubmited']['ordernumber'])) {
+    // Output the order number
+    $orderNumber = $_SESSION['orderSubmited']['ordernumber'];
+    echo '
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+        <script>
+            window.onload = function() {
+                Swal.fire({
+                    title: "Order Placed!",
+                    text: "Your order number is ' . $orderNumber . '",
+                    icon: "success",
+                    confirmButtonText: "OK"
+                });
+            };
+        </script>
+        ';
+    // Clear the session variable to prevent showing the alert multiple times
+    unset($_SESSION['orderSubmited']['ordernumber']);
+}
+?>
 
 <style>
     .category-btn-checkbox {
@@ -71,6 +92,42 @@
     /* Mark the steps that are finished and valid: */
     .step.finish {
         background-color: #04AA6D;
+    }
+
+    .quantity-input {
+        display: inline-flex;
+        align-items: center;
+    }
+
+    .quantity-control {
+        display: flex;
+        align-items: center;
+    }
+
+    .quantity-btn {
+        width: 20px;
+        /* Adjust the width of the buttons */
+        height: 30px;
+        /* Adjust the height of the buttons */
+        font-size: 20px;
+        cursor: pointer;
+        border: 1px solid #ccc;
+        /* Add border for better visibility */
+        border-radius: 4px;
+        /* Add some border radius for a rounded look */
+        display: flex;
+        /* Use flexbox */
+        justify-content: center;
+        /* Center the text horizontally */
+        align-items: center;
+        /* Center the text vertically */
+    }
+
+    .quantity-field {
+        width: 50px;
+        text-align: center;
+        margin: 0 10px;
+        /* Add some margin between the input field and buttons */
     }
 </style>
 
@@ -156,14 +213,7 @@
                                 <td><img height="100px" src="uploads/${product.image}" alt="${product.product_name}"></td>
                             `;
                             } else {
-                                // If the product is not available, disable the link
-                                // productCard.innerHTML = `
-                                // <td><a style="opacity:60%;" disabled>${product.product_name}</a></td>
-                                // <td>${product.product_description}</td>
-                                // <td>${product.price}</td>
-                                // <td>${product.status}</td>
-                                // <td><img height="100px" src="uploads/${product.image}" alt="${product.product_name}"></td>
-                                // `;
+                                //display null products
                             }
                             productContainer.appendChild(productCard);
                             productContainer.appendChild(productCard);
@@ -203,41 +253,68 @@
                         <tr>
                             <th>Product Name</th>
                             <th>Price</th>
+                            <th style="width:30px;">Quantity</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <?php if (isset($_SESSION['cart'])) : ?>
-                            <?php foreach ($_SESSION['cart'] as $item) : ?>
-
-                                <?php
+                        <?php if (!isset($_SESSION['cart']) || empty($_SESSION['cart'])) : ?>
+                            <tr>
+                                <td colspan="4" class="text-center py-3">
+                                    <div class="alert alert-info m-0" role="alert">
+                                        NO CART ITEMS
+                                    </div>
+                                </td>
+                            </tr>
+                            <?php else :
+                            $total = 0.0; // Initialize total variable
+                            foreach ($_SESSION['cart'] as $key => $item) :
                                 $id = $item['base_coffee_id'];
-
                                 $prod = $db->query("SELECT product_id, 
-                                        product_name,
-                                        product_description, 
-                                        price, 
-                                        CONCAT(UCASE(SUBSTRING(category, 1, 1)), LOWER(SUBSTRING(category, 2))) AS category, 
-                                        image 
-                                        FROM tblproducts WHERE product_id = $id
-                                        ")->get();
-                                ?>
-
+                                product_name,
+                                product_description, 
+                                price, 
+                                CONCAT(UCASE(SUBSTRING(category, 1, 1)), LOWER(SUBSTRING(category, 2))) AS category, 
+                                image 
+                                FROM tblproducts WHERE product_id = $id")->get();
+                            ?>
                                 <tr>
                                     <td><?= $item['base_coffee'] ?></td>
                                     <td><?= $prod[0]['price'] ?></td>
+                                    <td>
+                                        <div class="quantity-input">
+                                            <button class="quantity-btn minus-btn" type="button" onclick="decrementQuantity(this)">-</button>
+                                            <input style="width: 50px;" type="number" name="<?= $item['base_coffee_id'] ?>" value="<?= $item['quantity'] ?>" readonly>
+                                            <button class="quantity-btn plus-btn" type="button" onclick="incrementQuantity(this,<?= $prod[0]['price'] ?>)">+</button>
+                                        </div>
+                                    </td>
+                                    <td data-base-coffee-id="<?= $item['base_coffee_id'] ?>" data-price="<?= $prod[0]['price'] ?>" data-quantity="<?= $item['quantity'] ?>">
+                                        <button type="button" class="remove-item-btn btn btn-danger" name="remove_item" data-base-coffee-id="<?= $item['base_coffee_id'] ?>" value="">X</button>
+                                    </td> <!-- Button to remove item -->
+                                <?php
+                                $total += ($prod[0]['price'] * $item['quantity']); // Accumulate price to total
+                            endforeach;
+                                ?>
+                                <tr>
+                                    <th>Total:</th>
+                                    <td colspan="3">
+                                        <input style="border:none; width:100px;" disabled id="total_order" type="float" value="<?= number_format($total, 2) ?>" step="2" readonly></input> php
+                                    </td> <!-- Output total here -->
                                 </tr>
-                            <?php endforeach; ?>
-                        <?php endif; ?>
+                            <?php endif; ?>
+                            <?php if (isset($_SESSION['cart']) && !empty($_SESSION['cart'])) : ?>
+                                <tr>
+                                    <td colspan="4">
+                                        <button type="submit" class="btn btn-primary btn-block">Checkout</button>
+                                    </td> <!-- Checkout button -->
+                                </tr>
+                            <?php endif; ?>
                     </tbody>
                 </table>
+            </form>
         </div>
-        <div class="cart-footer p-2 bg-light border-top">
-            <button type="submit" id="checkoutBtn" class="btn btn-primary">Checkout</button>
-        </div>
-        </form>
     </div>
 </div>
-<!-- Coffee Shop Cart section end -->
+
 
 <!-- Chatbot section start -->
 <div id="overlay"></div>
@@ -329,6 +406,7 @@
         const ingredientsContainer = document.getElementById('prod_ingredients');
 
         const baseCoffeeOptions = <?= json_encode($products) ?>;
+
 
         // Function to update base coffee options based on selected categories
         function updateBaseCoffeeOptions() {
@@ -430,7 +508,130 @@
             });
 
         });
+
     });
+
+    document.querySelectorAll('.remove-item-btn').forEach(button => {
+        button.addEventListener('click', function() {
+            const baseCoffeeId = this.getAttribute('data-base-coffee-id');
+            removeItemFromCart(baseCoffeeId);
+        });
+    });
+
+    function removeItemFromCart(baseCoffeeId) {
+        fetch('/remove_cart', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    base_coffee_id: baseCoffeeId,
+                }),
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log('Item removed successfully');
+                const button = document.querySelector(`button[data-base-coffee-id="${baseCoffeeId}"]`);
+                if (button) {
+                    // Find the closest ancestor that is a table row (<tr>)
+                    const row = button.closest('tr');
+                    if (row) {
+                        // Remove the row from the DOM
+                        row.remove();
+                    }
+                    // Update total cost after removing the item
+                    const newtotalInput = document.getElementById('total_order');
+                    newtotalInput.value = calculateTotal();
+                }
+
+                // Check if cart is empty
+                const cartIsEmpty = document.querySelectorAll('#cart tbody tr').length <= 1;
+                if (cartIsEmpty) {
+                    // Reload the page
+                    location.reload();
+                }
+            })
+            .catch((error) => {
+                console.error('Error removing item:', error);
+            });
+    }
+
+
+
+
+    function calculateTotal() {
+        const items = document.querySelectorAll('#cart tbody tr');
+        let total = 0.0;
+        items.forEach(item => {
+            const quantityInput = item.querySelector('input[type="number"]');
+            if (quantityInput) {
+                const price = parseFloat(item.querySelector('td:nth-child(2)').textContent);
+                const quantity = parseInt(quantityInput.value);
+                total += price * quantity;
+            }
+        });
+        console.log('Total:', total.toFixed(2)); // Debugging statement
+        return total.toFixed(2); // Round to two decimal places
+    }
+
+
+    function incrementQuantity(button) {
+        const input = button.parentNode.querySelector('input');
+        const currentValue = parseInt(input.value);
+        const totalInput = document.getElementById('total_order');
+        // Extract baseCoffeeId from the input's name attribute
+        const baseCoffeeId = input.name;
+        input.value = currentValue + 1;
+        totalInput.value = calculateTotal();
+
+        // Update the session cart
+        updateSessionCart(baseCoffeeId, currentValue + 1);
+    }
+
+    function decrementQuantity(button) {
+        const input = button.parentNode.querySelector('input');
+        const currentValue = parseInt(input.value);
+        if (currentValue > 1) {
+            input.value = currentValue - 1;
+            const totalInput = document.getElementById('total_order');
+            // Extract baseCoffeeId from the input's name attribute
+            const baseCoffeeId = input.name;
+            totalInput.value = calculateTotal();
+
+            // Update the session cart
+            updateSessionCart(baseCoffeeId, currentValue - 1);
+        }
+    }
+
+    function updateSessionCart(baseCoffeeId, newQuantity) {
+        fetch('/update_cart', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    base_coffee_id: baseCoffeeId, // Ensure this matches the key expected by the server
+                    quantity: newQuantity, // Ensure this matches the key expected by the server
+                }),
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log('Cart updated successfully');
+            })
+            .catch((error) => {
+                console.error('Error updating cart:', error);
+            });
+    }
 </script>
 
 

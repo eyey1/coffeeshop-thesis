@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 use Http\Forms\LoginForm;
 use Core\Authenticator;
@@ -10,13 +10,13 @@ $password = $_POST['password'];
 $form = new LoginForm();
 
 if ($form->validate($email, $password)) {
-  $auth = new Authenticator();  
+  $auth = new Authenticator();
 
   if ($auth->attemp($email, $password)) {
-      if($_SESSION['user']['position'] === 'admin') {
-                redirect('/admin_dashboard');
-      }
-      redirect('/');
+    if ($_SESSION['user']['position'] === 'admin') {
+      redirect('/admin_dashboard');
+    }
+    redirect('/');
   }
 
   $form->error('email', 'No matching account for this email address and password');
@@ -34,5 +34,3 @@ Session::flash('old', [
 ]);
 
 return redirect('/login');
-
-?>

@@ -1,6 +1,15 @@
 <?php require base_path('views/partials/head.php') ?>
 <?php require base_path('views/partials/nav.php') ?>
 
+
+<script>
+    function signUpFail() {
+        swal("Sign up was unsuccessful. Please try again.", {
+            icon: "error",
+        });
+    };
+</script>
+
 <!-- Page Header Start -->
 <div class="container-fluid page-header mb-5 position-relative overlay-bottom">
     <div class="d-flex flex-column align-items-center justify-content-center pt-0 pt-lg-5" style="min-height: 200px">
@@ -35,31 +44,46 @@
                                 <input style="color: white;" name="firstname" type="text" class="form-control bg-transparent border-primary p-4" placeholder="First Name" required="required" />
                             </div>
                             <?php if (isset($errors['first_name'])) : ?>
-                                <p class="text-red-500 text-sm mt-2"><?= $errors['first_name'] ?></p>
+                                <script>
+                                    signUpFail();
+                                </script>
+                                <p class="text-red-500 text-sm mt-2 text-white"><?= $errors['first_name'] ?></p>
                             <?php endif; ?>
                             <div class="form-group">
                                 <input style="color: white;" name="lastname" type="text" class="form-control bg-transparent border-primary p-4" placeholder="Last Name" required="required" />
                             </div>
                             <?php if (isset($errors['last_name'])) : ?>
-                                <p class="text-red-500 text-sm mt-2"><?= $errors['last_name'] ?></p>
+                                <script>
+                                    signUpFail();
+                                </script>
+                                <p class="text-red-500 text-sm mt-2 text-white"><?= $errors['last_name'] ?></p>
                             <?php endif; ?>
                             <div class="form-group">
                                 <input style="color: white;" name="email" type="email" class="form-control bg-transparent border-primary p-4" placeholder="Email" required="required" />
                             </div>
                             <?php if (isset($errors['email'])) : ?>
-                                <p class="text-red-500 text-sm mt-2"><?= $errors['email'] ?></p>
+                                <script>
+                                    signUpFail();
+                                </script>
+                                <p class="text-red-500 text-sm mt-2 text-white"><?= $errors['email'] ?></p>
                             <?php endif; ?>
                             <div class="form-group">
                                 <input style="color: white;" name="username" type="text" class="form-control bg-transparent border-primary p-4" placeholder="Username" required="required" />
                             </div>
                             <?php if (isset($errors['username'])) : ?>
-                                <p class="text-red-500 text-sm mt-2"><?= $errors['username'] ?></p>
+                                <script>
+                                    signUpFail();
+                                </script>
+                                <p class="text-red-500 text-sm mt-2 text-white"><?= $errors['username'] ?></p>
                             <?php endif; ?>
                             <div class="form-group">
                                 <input style="color: white;" name="password" type="password" class="form-control bg-transparent border-primary p-4" placeholder="Password" required="required" />
                             </div>
                             <?php if (isset($errors['password'])) : ?>
-                                <p class="text-red-500 text-sm mt-2"><?= $errors['password'] ?></p>
+                                <script>
+                                    signUpFail();
+                                </script>
+                                <p class="text-red-500 text-sm mt-2 text-white"><?= $errors['password'] ?></p>
                             <?php endif; ?>
                             <div>
                                 <button class="btn btn-primary btn-block font-weight-bold py-3" type="submit">Register</button>

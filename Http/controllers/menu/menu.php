@@ -2,6 +2,7 @@
 
 use Core\App;
 use Core\Database;
+
 $db = App::resolve('Core\Database');
 
 $products = $db->query("SELECT product_id, 
@@ -21,7 +22,10 @@ $products = $db->query("SELECT product_id,
 
 // dd(json_encode($_SESSION['cart']));
 
+
+
+
+
 view('menu.view.php', [
     'products' => $products,
 ]);
-
