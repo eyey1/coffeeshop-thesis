@@ -7,8 +7,6 @@ use Core\Authenticator;
 
 $db = App::resolve('Core\Database');
 
-// dd($_POST);
-
 $first_name = $_POST['firstname'];
 $last_name = $_POST['lastname'];
 $email = $_POST['email'];
@@ -25,19 +23,6 @@ if (!Validator::string($password, 7, 255)) {
   $errors['password'] = "Please provide a password of atleast 7 characters.";
 }
 
-$checkUsername = $db->query("SELECT * FROM tblemployees where 1")->get();
-
-
-foreach ($checkUsername as $usernameExist) {
-  if ($usernameExist['username'] == $username) {
-    $errors["username"] = "The username '$username' has already been taken.";
-  }
-  if ($usernameExist['email'] == $email) {
-    $errors["email"] = "An account with this email '$email' is currently existing.";
-  }
-}
-
-
 if (!empty($errors)) {
   return view('registration/create.view.php', [
     'heading' => 'Register',
@@ -47,12 +32,11 @@ if (!empty($errors)) {
 
 $user = $db->query("SELECT * FROM tblemployees where email = :email", ['email' => $email])->find();
 
-
 if ($user) {
   header('location: /');
   die();
 } else {
-
+  // Register the user
   $db->query("INSERT INTO tblemployees(firstname, lastname, email, username, password) VALUES(:firstname, :lastname, :email, :username, :password)", [
     'firstname' => $first_name,
     'lastname' => $last_name,
@@ -61,10 +45,10 @@ if ($user) {
     'password' => password_hash($password, PASSWORD_BCRYPT),
   ]);
 
-
-  $_SESSION['signupSuccess'] = true;
   Authenticator::login($user);
 
-  header('location: /register');
-  die();
+  echo "<script>
+            alert('Registration Successful: You have successfully registered.');
+            window.location.href = '/'; // Redirect to login page
+          </script>";
 }
